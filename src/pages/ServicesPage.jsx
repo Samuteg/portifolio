@@ -2,7 +2,7 @@ const ServicesPage = () => {
   return (
     <section className="services">
       <div className="services-content">
-        <h1>Services</h1>
+        <h2>Services</h2>
         <p></p>
         <div className="services-section">
           <div className="service-card">

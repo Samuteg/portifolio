@@ -9,53 +9,43 @@ const SkillsPage = () => {
       <div class="skills-section">
         <h2>Skills</h2>
 
-        <div className="skills-grid">
-          <div className="skill-card fade-in">
-            <i className="fa-brands fa-html5"></i>
+        <div class="skills-grid">
+          <div class="skill-card fade-in">
+            <i class="fa-brands fa-html5"></i>
             <span>HTML</span>
-            <div className="progress">
-              <div className="width-90"></div>
-            </div>
           </div>
 
           <div className="skill-card fade-in">
             <i className="fa-brands fa-css3-alt"></i>
             <span>CSS</span>
-            <div className="progress">
-              <div className="w-90%"></div>
-            </div>
           </div>
 
           <div className="skill-card fade-in">
             <i className="fa-brands fa-js"></i>
             <span>JavaScript</span>
-            <div className="progress">
-              <div className="w-60%"></div>
-            </div>
           </div>
 
           <div className="skill-card fade-in">
             <i className="fa-brands fa-python"></i>
             <span>Python</span>
-            <div className="progress">
-              <div className="w-80%"></div>
-            </div>
           </div>
 
           <div className="skill-card fade-in">
-            <i className="fa-solid fa-code"></i>
-            <span>C++</span>
-            <div className="progress">
-              <div className="w-50%"></div>
-            </div>
+            <i className="fa-brands fa-node"></i>
+            <span>NodeJs</span>
           </div>
 
           <div className="skill-card fade-in">
             <i className="fa-solid fa-database"></i>
             <span>MySQL</span>
-            <div className="progress">
-              <div className="w-60%"></div>
-            </div>
+          </div>
+          <div className="skill-card fade-in">
+            <i className="fa-brands fa-react"></i>
+            <span>React</span>
+          </div>
+          <div className="skill-card fade-in">
+            <i className="fa-brands fa-golang"></i>
+            <span>Go</span>
           </div>
         </div>
       </div>

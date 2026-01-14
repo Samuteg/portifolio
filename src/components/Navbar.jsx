@@ -16,7 +16,7 @@ const Navbar = () => {
           <nav className="flex flex-wrap items-center gap-4">
             <Link
               to={"/"}
-              className="text-gray-300 hover:text-red-400 transition duration-300 ease-in-out"
+              className= "text-gray-300 hover:text-red-400 transition duration-300 ease-in-out"
             >
               <House
                 className="inline-block mr-1 group-hover:text-red-400"

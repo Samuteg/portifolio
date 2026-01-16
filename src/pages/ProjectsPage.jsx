@@ -28,7 +28,7 @@ const ProjectsPage = () => {
               <span class="tag">Python</span>
             </div>
 
-            <div class="meta">
+            <div class="meta-project">
               <span>⭐ 4.8 — Avaliações</span>
               <span>•</span>
               <span>Nov 2025</span>
@@ -69,17 +69,17 @@ const ProjectsPage = () => {
               <span class="tag">Python</span>
             </div>
 
-            <div class="meta">
+            <div class="meta-project">
               <span>⭐ 4.8 — Avaliações</span>
               <span>•</span>
               <span>Nov 2025</span>
             </div>
 
             <div class="actions">
-              <button class="btn primary" onclick="window.open('#','_blank')">
+              <button class="btn primary" onClick="window.open('#','_blank')">
                 Ver projeto
               </button>
-              <button class="btn ghost" onclick="window.open('#','_blank')">
+              <button class="btn ghost" onClick="window.open('#','_blank')">
                 Código
               </button>
             </div>

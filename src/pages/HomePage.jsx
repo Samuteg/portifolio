@@ -1,4 +1,5 @@
 import '../HomePage.css';
+import profile from '../assets/profile.jpeg';
 
 const HomePage = () => {
   return (
@@ -9,7 +10,7 @@ const HomePage = () => {
       />
       <div class="home-img">
         <img
-          src="https://imgs.search.brave.com/e6dE2nmdO8E4c61gHtQ1fZBPMsExEYxwY2busujmhQI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudW5zcGxhc2gu/Y29tL3Bob3RvLTE1/MTQ4ODgyODY5NzQt/NmMwM2UyY2ExZGJh/P2ZtPWpwZyZxPTYw/Jnc9MzAwMCZpeGxp/Yj1yYi00LjEuMCZp/eGlkPU0zd3hNakEz/ZkRCOE1IeHpaV0Z5/WTJoOE1ueDhaMkYw/YjN4bGJud3dmSHd3/Zkh4OE1BPT0"
+          src={profile} width={40} height={400}
           alt=""
         />
       </div>

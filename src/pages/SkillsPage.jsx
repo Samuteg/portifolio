@@ -7,7 +7,7 @@ const SkillsPage = () => {
       />
 
       <div class="skills-section">
-        <h2>Skills</h2>
+        <h2 className="skills-title">Skills</h2>
 
         <div class="skills-grid">
           <div class="skill-card fade-in">

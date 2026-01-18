@@ -1,3 +1,4 @@
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'

@@ -35,12 +35,9 @@ const ProjectsPage = () => {
             </div>
 
             <div class="actions">
-              <button class="btn primary" onclick="window.open('#','_blank')">
-                View project
-              </button>
-              <button class="btn ghost" onclick="window.open('#','_blank')">
+              <a class="btn ghost" href="https://github.com/Samuteg/Sistema-de-Alunos">
                 Code
-              </button>
+              </a>
             </div>
           </div>
         </article>
@@ -83,15 +80,15 @@ const ProjectsPage = () => {
             </div>
 
             <div class="actions">
-              <button class="btn primary" onClick="window.open('#','_blank')">
+              <a class="btn primary" href="">
                 View project
-              </button>
-              <button
+              </a>
+              <a
                 class="btn ghost"
-                onClick="window.open('https://github.com/Samuteg/chatify','_blank')"
+                href="https://github.com/?locale=pt-BR"
               >
                 Code
-              </button>
+              </a>
             </div>
           </div>
         </article>

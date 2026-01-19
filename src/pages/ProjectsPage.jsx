@@ -29,17 +29,17 @@ const ProjectsPage = () => {
             </div>
 
             <div class="meta-project">
-              <span>⭐ 4.8 — Avaliações</span>
+              <span>⭐ 4.0 — Avaliações</span>
               <span>•</span>
-              <span>Nov 2025</span>
+              <span>jun 2025</span>
             </div>
 
             <div class="actions">
               <button class="btn primary" onclick="window.open('#','_blank')">
-                Ver projeto
+                View project
               </button>
               <button class="btn ghost" onclick="window.open('#','_blank')">
-                Código
+                Code
               </button>
             </div>
           </div>
@@ -55,39 +55,49 @@ const ProjectsPage = () => {
               alt="Preview do projeto"
             />
           </div>
-          
+
           <div class="content">
-            <h3 id="proj-title-2">Sistema De Alunos — SDA</h3>
+            <h3 id="proj-title-2">Chatify</h3>
             <p>
-              Aplicativo simples e eficiente para gerenciar estudantes. Permite
-              cadastrar, visualizar, editar e excluir registros de forma
-              organizada. Desenvolvido em Python com código limpo e modular,
-              ideal para projetos educacionais ou pequenos sistemas de controle.
+              A modern web-based communication application that integrates
+              seamlessly with Telegram, enabling real-time messaging,
+              notifications, and automation through a unified interface. The
+              platform allows users to send and receive messages, manage
+              conversations, and trigger events directly from the web,
+              leveraging Telegram’s secure and reliable API. Designed for
+              efficiency and scalability, it is ideal for customer support, team
+              communication, alerts, and system integrations.
             </p>
 
             <div class="tags" aria-hidden="false">
-              <span class="tag">Python</span>
+              <span class="tag">NodeJs</span>
+              <span class="tag">Express</span>
+              <span class="tag">Mongodb</span>
+              <span class="tag">React</span>
             </div>
 
             <div class="meta-project">
               <span>⭐ 4.8 — Avaliações</span>
               <span>•</span>
-              <span>Nov 2025</span>
+              <span>jan 2026</span>
             </div>
 
             <div class="actions">
               <button class="btn primary" onClick="window.open('#','_blank')">
-                Ver projeto
+                View project
               </button>
-              <button class="btn ghost" onClick="window.open('#','_blank')">
-                Código
+              <button
+                class="btn ghost"
+                onClick="window.open('https://github.com/Samuteg/chatify','_blank')"
+              >
+                Code
               </button>
             </div>
           </div>
         </article>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ProjectsPage
+export default ProjectsPage;

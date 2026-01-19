@@ -1,5 +1,5 @@
-import '../HomePage.css';
-import profile from '../assets/profile.jpeg';
+import "../HomePage.css";
+import profile from "../assets/profile.jpeg";
 
 const HomePage = () => {
   return (
@@ -9,10 +9,7 @@ const HomePage = () => {
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       />
       <div class="home-img">
-        <img
-          src={profile} width={40} height={400}
-          alt=""
-        />
+        <img src={profile} width={40} height={400} alt="" />
       </div>
       <div class="home-content">
         <h1>
@@ -22,12 +19,14 @@ const HomePage = () => {
           i am a <span></span>
         </h3>
         <p>
-          elit. Minus labore dolores esse. Odit similique doloribus tenetur
-          doloremque, sunt commodi in ipsa repudiandae debitis deleniti
-          blanditiis quibusdam quaerat neque asperiores ea.
+          Developer focused on building efficient and functional solutions, with
+          experience in Python and interface development. Strong interest in
+          systems, automation, and projects that combine logic, design, and
+          solid user experience. Committed to continuous learning and technical
+          growth.
         </p>
         <div class="social-icons">
-          <a href="https://www.linkedin.com/in/samuel-neves-b9002b385?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">
+          <a href="https://www.linkedin.com/in/samu-teg-b9002b385/">
             <i class="fa-brands fa-linkedin-in"></i>
           </a>
           <a href="https://github.com/Samuteg">
@@ -37,11 +36,11 @@ const HomePage = () => {
           <a href="https://x.com/Samuteg10?t=MknYnieS_akYpSccjQYNqg&s=09">
             <i class="fa-brands fa-x-twitter"></i>
           </a>
-          <a href="#">
+          <a href="https://www.instagram.com/samuteg10/">
             <i class="fa-brands fa-instagram"></i>
           </a>
         </div>
-        <a href="#" class="btn">
+        <a href="https://www.99freelas.com.br/user/Samuteg10" class="btn">
           Hire me
         </a>
       </div>

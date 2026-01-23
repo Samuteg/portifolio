@@ -1,3 +1,5 @@
+import sda_print from "../assets/sda_print.png"
+
 const ProjectsPage = () => {
   return (
     <section class="projects">
@@ -10,7 +12,7 @@ const ProjectsPage = () => {
             aria-label="Thumbnail do projeto: App de tarefas"
           >
             <img
-              src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"
+              src={sda_print}
               alt="Preview do projeto"
             />
           </div>
@@ -26,6 +28,7 @@ const ProjectsPage = () => {
 
             <div class="tags" aria-hidden="false">
               <span class="tag">Python</span>
+              <span class="tag">Sqlite</span>
             </div>
 
             <div class="meta-project">
@@ -35,8 +38,8 @@ const ProjectsPage = () => {
             </div>
 
             <div class="actions">
-              <a class="btn ghost" href="https://github.com/Samuteg/Sistema-de-Alunos">
-                Code
+              <a class="btn primary" href="https://github.com/Samuteg/Sistema-de-Alunos">
+                View Code
               </a>
             </div>
           </div>

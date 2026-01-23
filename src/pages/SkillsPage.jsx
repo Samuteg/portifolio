@@ -37,7 +37,7 @@ const SkillsPage = () => {
 
           <div className="skill-card fade-in">
             <i className="fa-solid fa-database"></i>
-            <span>MySQL</span>
+            <span>MongoDB</span>
           </div>
           <div className="skill-card fade-in">
             <i className="fa-brands fa-react"></i>

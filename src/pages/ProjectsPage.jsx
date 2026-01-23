@@ -1,4 +1,5 @@
-import sda_print from "../assets/sda_print.png"
+import sda_print from "../assets/sda_print.png";
+import portifolio_print from "../assets/portifolio_print.png";
 
 const ProjectsPage = () => {
   return (
@@ -11,19 +12,16 @@ const ProjectsPage = () => {
             role="img"
             aria-label="Thumbnail do projeto: App de tarefas"
           >
-            <img
-              src={sda_print}
-              alt="Preview do projeto"
-            />
+            <img src={sda_print} alt="Preview do projeto" />
           </div>
 
           <div class="content">
             <h3 id="proj-title-1">Sistema De Alunos — SDA</h3>
             <p>
-              Aplicativo simples e eficiente para gerenciar estudantes. Permite
-              cadastrar, visualizar, editar e excluir registros de forma
-              organizada. Desenvolvido em Python com código limpo e modular,
-              ideal para projetos educacionais ou pequenos sistemas de controle.
+              A simple and efficient application for managing student records.
+              It allows users to add, view, edit, and delete student data in an
+              organized way. Developed in Python with clean and modular code,
+              ideal for educational projects and small management systems.
             </p>
 
             <div class="tags" aria-hidden="false">
@@ -38,13 +36,64 @@ const ProjectsPage = () => {
             </div>
 
             <div class="actions">
-              <a class="btn primary" href="https://github.com/Samuteg/Sistema-de-Alunos">
+              <a
+                class="btn primary"
+                href="https://github.com/Samuteg/Sistema-de-Alunos"
+              >
                 View Code
               </a>
             </div>
           </div>
         </article>
-        <article class="portfolio-card" aria-labelledby="proj-title-1">
+        <article class="portfolio-card" aria-labelledby="proj-title-2">
+          <div
+            class="thumb"
+            role="img"
+            aria-label="Thumbnail do projeto: App de tarefas"
+          >
+            <img src={portifolio_print} alt="Preview do projeto" />
+          </div>
+
+          <div class="content">
+            <h3 id="proj-title-2">Portifolio</h3>
+            <p>
+              I am a dedicated software developer with experience in building
+              web and desktop applications, focusing on clean architecture,
+              performance, and user-centered design. I work with technologies
+              such as JavaScript, and modern web frameworks to deliver scalable
+              and reliable solutions. I am continuously improving my skills and
+              enjoy transforming ideas into functional, high-quality products.
+            </p>
+
+            <div class="tags" aria-hidden="false">
+              <span class="tag">React</span>
+              <span class="tag">Tailwind</span>
+              <span class="tag">Vite</span>
+            </div>
+
+            <div class="meta-project">
+              <span>⭐ 4.8 — Avaliações</span>
+              <span>•</span>
+              <span>jan 2026</span>
+            </div>
+
+            <div class="actions">
+              <a
+                class="btn primary"
+                href="https://base-de-portifolio.vercel.app/"
+              >
+                View project
+              </a>
+              <a
+                class="btn ghost"
+                href="https://github.com/Samuteg/Base-de-portifolio"
+              >
+                Code
+              </a>
+            </div>
+          </div>
+        </article>
+        <article class="portfolio-card" aria-labelledby="proj-title-3">
           <div
             class="thumb"
             role="img"
@@ -86,10 +135,7 @@ const ProjectsPage = () => {
               <a class="btn primary" href="">
                 View project
               </a>
-              <a
-                class="btn ghost"
-                href="https://github.com/?locale=pt-BR"
-              >
+              <a class="btn ghost" href="https://github.com/?locale=pt-BR">
                 Code
               </a>
             </div>

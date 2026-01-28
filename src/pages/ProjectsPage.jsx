@@ -1,5 +1,6 @@
 import sda_print from "../assets/sda_print.png";
 import portifolio_print from "../assets/portifolio_print.png";
+import devbox_print from "../assets/debox_print.png"
 
 const ProjectsPage = () => {
   return (
@@ -137,6 +138,48 @@ const ProjectsPage = () => {
               </a>
               <a class="btn ghost" href="https://github.com/?locale=pt-BR">
                 Code
+              </a>
+            </div>
+          </div>
+        </article>
+         <article class="portfolio-card" aria-labelledby="proj-title-4">
+          <div
+            class="thumb"
+            role="img"
+            aria-label="Thumbnail do projeto: App de tarefas"
+          >
+            <img
+              src={devbox_print}
+              alt="Preview do projeto"
+            />
+          </div>
+          <div class="content">
+            <h3 id="proj-title-3">Devbox</h3>
+            <p>
+              DevBox is a high-performance Command Line Interface (CLI) built in
+              Go designed to eliminate the friction of daily development
+              workflows. From scaffolding clean architectures to enforcing git
+              best practices, DevBox automates the "boring stuff" so you can
+              focus on writing code.
+            </p>
+
+            <div class="tags" aria-hidden="false">
+              <span class="tag">Go</span>
+              <span class="tag">Cobra</span>
+              <span class="tag">Viper</span>
+              <span class="tag">Promptui</span>
+              <span class="tag">Go-git</span>
+            </div>
+
+            <div class="meta-project">
+              <span>⭐ 4.7 — Avaliações</span>
+              <span>•</span>
+              <span>jan 2026</span>
+            </div>
+
+            <div class="actions">
+              <a class="btn primary" href="https://github.com/Samuteg/DevboxCLI">
+                View code
               </a>
             </div>
           </div>

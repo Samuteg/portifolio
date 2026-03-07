@@ -1,6 +1,7 @@
 import sda_print from "../assets/sda_print.png";
 import portifolio_print from "../assets/portifolio_print.png";
-import devbox_print from "../assets/debox_print.png"
+import devbox_print from "../assets/debox_print.png";
+import taskprint from "../assets/taskprint.png";
 
 const ProjectsPage = () => {
   return (
@@ -100,58 +101,49 @@ const ProjectsPage = () => {
             role="img"
             aria-label="Thumbnail do projeto: App de tarefas"
           >
-            <img
-              src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder"
-              alt="Preview do projeto"
-            />
+            <img src={taskprint} alt="Preview do projeto" />
           </div>
 
           <div class="content">
-            <h3 id="proj-title-2">Chatify</h3>
+            <h3 id="proj-title-3">TaskNest</h3>
             <p>
-              A modern web-based communication application that integrates
-              seamlessly with Telegram, enabling real-time messaging,
-              notifications, and automation through a unified interface. The
-              platform allows users to send and receive messages, manage
-              conversations, and trigger events directly from the web,
-              leveraging Telegram’s secure and reliable API. Designed for
-              efficiency and scalability, it is ideal for customer support, team
-              communication, alerts, and system integrations.
+              TaskNest é um sistema de gestão de tarefas e projetos voltado para
+              equipes que prezam por clareza e foco na entrega. Com um quadro
+              Kanban nativo, os membros podem visualizar e mover tarefas entre
+              os estados — Pendente, Em Progresso e Concluído — de forma fluida
+              e intuitiva, sem fricção.
             </p>
 
             <div class="tags" aria-hidden="false">
               <span class="tag">NodeJs</span>
               <span class="tag">Express</span>
               <span class="tag">Mongodb</span>
-              <span class="tag">React</span>
+              <span class="tag">Next.js</span>
             </div>
 
             <div class="meta-project">
               <span>⭐ 4.8 — Avaliações</span>
               <span>•</span>
-              <span>jan 2026</span>
+              <span>mar 2026</span>
             </div>
 
             <div class="actions">
-              <a class="btn primary" href="">
+              <a class="btn primary" href="https://task-nest-lac.vercel.app/">
                 View project
               </a>
-              <a class="btn ghost" href="https://github.com/?locale=pt-BR">
+              <a class="btn ghost" href="https://github.com/Samuteg/TaskNest">
                 Code
               </a>
             </div>
           </div>
         </article>
-         <article class="portfolio-card" aria-labelledby="proj-title-4">
+        <article class="portfolio-card" aria-labelledby="proj-title-4">
           <div
             class="thumb"
             role="img"
             aria-label="Thumbnail do projeto: App de tarefas"
           >
-            <img
-              src={devbox_print}
-              alt="Preview do projeto"
-            />
+            <img src={devbox_print} alt="Preview do projeto" />
           </div>
           <div class="content">
             <h3 id="proj-title-3">Devbox</h3>
@@ -178,7 +170,10 @@ const ProjectsPage = () => {
             </div>
 
             <div class="actions">
-              <a class="btn primary" href="https://github.com/Samuteg/DevboxCLI">
+              <a
+                class="btn primary"
+                href="https://github.com/Samuteg/DevboxCLI"
+              >
                 View code
               </a>
             </div>

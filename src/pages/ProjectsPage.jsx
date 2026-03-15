@@ -5,6 +5,7 @@ import sda_print from "../assets/sda_print.png";
 import portifolio_print from "../assets/portifolio_print.png";
 import devbox_print from "../assets/debox_print.png";
 import taskprint from "../assets/taskprint.png";
+import uptime from "../assets/uptime.png"
 
 const projects = [
   {
@@ -22,12 +23,24 @@ const projects = [
   {
     title: "DevBox CLI",
     description:
-      "CLI de alta performance feita em Go para eliminar a fricção do dia-a-dia de desenvolvimento. Scaffolding de arquiteturas, git best practices e automação do \"boring stuff\".",
+      'CLI de alta performance feita em Go para eliminar a fricção do dia-a-dia de desenvolvimento. Scaffolding de arquiteturas, git best practices e automação do "boring stuff".',
     image: devbox_print,
     tags: ["Go", "Cobra", "Viper", "Promptui", "Go-git"],
     rating: "4.7",
     date: "Jan 2026",
     codeUrl: "https://github.com/Samuteg/DevboxCLI",
+    featured: true
+  },
+  {
+    title: "Uptime-monitor",
+    description:
+      "Monitoramento de sites arquitetura limpa. Construído com React, Tailwind e Framer Motion.",
+    image: uptime,
+    tags: ["React", "Tailwind", "Vite", "Framer Motion", "Go", "Goroutines"],
+    rating: "4.8",
+    date: "Mar 2026",
+    liveUrl: "https://uptime-monitor-psi-nine.vercel.app/",
+    codeUrl: "https://github.com/Samuteg/uptime-monitor",
   },
   {
     title: "Portfólio",

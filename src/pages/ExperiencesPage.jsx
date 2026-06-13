@@ -1,6 +1,13 @@
 import { motion as Motion } from "framer-motion";
-import { Briefcase, Calendar, MapPin,  BookOpen, ArrowUpRight } from "lucide-react";
+import {
+  Briefcase,
+  Calendar,
+  MapPin,
+  BookOpen,
+  ArrowUpRight,
+} from "lucide-react";
 import PageTransition from "../components/PageTransition";
+import  CertificadoJava  from "../assets/CertificadoJavaIntermediario.jpeg";
 
 const experiences = [
   {
@@ -221,13 +228,49 @@ const ExperiencesPage = () => {
               </Motion.div>
 
               <div className="rounded-2xl p-6 bg-surface-100/50 border border-dashed border-white/15 text-gray-400">
-                <p className="text-sm mb-6">
-                  Espaço reservado para adicionar seus certificados. Aqui você pode listar os cursos e certificados que foram concluídos.
-                </p>
+                <div className="grid gap-6 md:grid-cols-2 items-center">
+                  <a
+                    href={CertificadoJava}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group block overflow-hidden rounded-2xl border border-dashed border-white/20 bg-surface/70 transition hover:border-accent/30"
+                  >
+                    <img
+                      src={CertificadoJava}
+                      alt="Certificado Java Intermediário"
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </a>
 
-                <div className="grid gap-6 md:grid-cols-2">
-                  <div className="h-40 rounded-2xl border border-dashed border-white/20 bg-surface/70" />
-                  <div className="h-40 rounded-2xl border border-dashed border-white/20 bg-surface/70" />
+                  <div className="flex flex-col justify-center gap-4">
+                    <div>
+                      <p className="text-sm uppercase tracking-[0.25em] text-accent font-semibold mb-2">
+                        Certificação
+                      </p>
+                      <h3 className="text-lg font-display font-bold text-white mb-2">
+                        Java Intermediário
+                      </h3>
+                      <p className="text-gray-400 text-sm leading-relaxed">
+                        Certificado de conclusão de curso de Java intermediário com foco em orientação a objetos, coleções, tratamento de exceções e desenvolvimento de aplicações.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-3">
+                      <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs text-accent border border-accent/20">
+                        Java
+                      </span>
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-gray-300 border border-white/10">
+                        Intermediário
+                      </span>
+                    </div>
+                    <a
+                      href={CertificadoJava}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center rounded-full bg-accent px-4 py-2 text-sm font-semibold text-surface transition hover:bg-accent/90"
+                    >
+                      Ver certificado
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

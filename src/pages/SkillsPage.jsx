@@ -11,7 +11,7 @@ import {
   FaServer,
   FaCode,
   FaGears,
-  FaPython,
+  FaJava,
   FaDatabase,
   FaJs,
 } from "react-icons/fa6";
@@ -127,9 +127,9 @@ export default function SkillsPage() {
               icon={<FaServer />}
               skills={[
                 { icon: <FaNodeJs />, label: "Node.js", level: 4 },
-                { icon: <FaNodeJs />, label: "Express", level: 4 },
+                { icon: <FaNodeJs />, label: "Fastify", level: 4 },
                 { icon: <FaGolang />, label: "Golang", level: 3 },
-                { icon: <FaPython />, label: "Python", level: 4 },
+                { icon: <FaJava />, label: "Java", level: 4 },
                 { icon: <FaServer />, label: "REST APIs", level: 5 },
                 { icon: <FaDatabase />, label: "MongoDB / SQLite", level: 4 },
               ]}
@@ -140,12 +140,12 @@ export default function SkillsPage() {
               title="DevOps & Tools"
               icon={<FaGears />}
               skills={[
-                { icon: <FaDocker />, label: "Docker", level: 3 },
-                { icon: <FaLinux />, label: "Linux", level: 4 },
+                { icon: <FaDocker />, label: "Docker", level: 2 },
+                { icon: <FaLinux />, label: "Linux", level: 5 },
                 { icon: <FaGitAlt />, label: "Git & GitHub", level: 5 },
-                { icon: <FaGears />, label: "CI / CD", level: 3 },
+                { icon: <FaGears />, label: "CI / CD", level: 2 },
                 { icon: <FaServer />, label: "Deployment", level: 4 },
-                { icon: <FaGears />, label: "Automação", level: 4 },
+                { icon: <FaGears />, label: "Automação", level: 2 },
               ]}
             />
           </div>

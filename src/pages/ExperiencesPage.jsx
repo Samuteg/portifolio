@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { Briefcase, Calendar, MapPin, ArrowUpRight } from "lucide-react";
+import { motion as Motion } from "framer-motion";
+import { Briefcase, Calendar, MapPin,  BookOpen, ArrowUpRight } from "lucide-react";
 import PageTransition from "../components/PageTransition";
 
 const experiences = [
@@ -9,7 +9,7 @@ const experiences = [
     period: "2023 — Presente",
     location: "Remoto",
     description:
-      "Criação de sistemas web, landing pages e automações personalizadas para clientes diversos. Trabalho com React, Node.js, Python e Go para entregar soluções sob medida.",
+      "Criação de sistemas web, landing pages e automações personalizadas para clientes diversos. Trabalho com React, Node.js, Java e Go para entregar soluções sob medida.",
     highlights: [
       "Desenvolvimento de landing pages responsivas e otimizadas",
       "Sistemas de gestão com dashboards interativos",
@@ -23,8 +23,8 @@ const experiences = [
 const education = [
   {
     title: "Aprendizado Contínuo",
-    institution: "Autodidato",
-    period: "2022 — Presente",
+    institution: "Autodidata",
+    period: "2024 — Presente",
     description:
       "Estudo constante de novas tecnologias, frameworks e padrões de desenvolvimento. Cursos, documentações oficiais e projetos práticos como metodologia.",
   },
@@ -55,7 +55,7 @@ const ExperiencesPage = () => {
 
         <div className="relative z-10 max-w-4xl mx-auto">
           {/* Header */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -69,141 +69,168 @@ const ExperiencesPage = () => {
               Minha jornada profissional e acadêmica no desenvolvimento de
               software.
             </p>
-          </motion.div>
+          </Motion.div>
 
-          {/* Experience Timeline */}
-          <div className="mb-20">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="flex items-center gap-3 mb-8"
-            >
-              <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
-                <Briefcase size={20} />
-              </div>
-              <h2 className="text-xl font-display font-bold text-white">
-                Experiência Profissional
-              </h2>
-            </motion.div>
+          <div className="space-y-20">
+            <div className="mb-20">
+              <Motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="flex items-center gap-3 mb-8"
+              >
+                <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+                  <Briefcase size={20} />
+                </div>
+                <h2 className="text-xl font-display font-bold text-white">
+                  Experiência Profissional
+                </h2>
+              </Motion.div>
 
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="relative"
-            >
-              {/* Timeline line */}
-              <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-accent/40 via-accent/20 to-transparent" />
+              <Motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="relative"
+              >
+                {/* Timeline line */}
+                <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-accent/40 via-accent/20 to-transparent" />
 
-              {experiences.map((exp, i) => (
-                <motion.div
-                  key={i}
-                  variants={itemVariants}
-                  className="relative pl-14 mb-8"
-                >
-                  {/* Timeline dot */}
-                  <div className="absolute left-3 top-6 w-4 h-4 rounded-full bg-accent shadow-lg shadow-accent/30 ring-4 ring-surface">
-                    {exp.current && (
-                      <div className="absolute inset-0 rounded-full bg-accent animate-ping opacity-30" />
-                    )}
-                  </div>
-
-                  <div className="group rounded-2xl p-6 bg-surface-100/50 border border-white/5 hover:border-accent/20 transition-all duration-500">
-                    {/* Current badge */}
-                    {exp.current && (
-                      <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-semibold mb-4">
-                        <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
-                        Atual
-                      </span>
-                    )}
-
-                    <h3 className="text-lg font-display font-bold text-white mb-1">
-                      {exp.title}
-                    </h3>
-                    <p className="text-accent font-medium text-sm mb-3">
-                      {exp.company}
-                    </p>
-
-                    {/* Meta */}
-                    <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500 mb-4">
-                      <span className="flex items-center gap-1">
-                        <Calendar size={12} />
-                        {exp.period}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MapPin size={12} />
-                        {exp.location}
-                      </span>
+                {experiences.map((exp, i) => (
+                  <Motion.div
+                    key={i}
+                    variants={itemVariants}
+                    className="relative pl-14 mb-8"
+                  >
+                    {/* Timeline dot */}
+                    <div className="absolute left-3 top-6 w-4 h-4 rounded-full bg-accent shadow-lg shadow-accent/30 ring-4 ring-surface">
+                      {exp.current && (
+                        <div className="absolute inset-0 rounded-full bg-accent animate-ping opacity-30" />
+                      )}
                     </div>
 
-                    <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                      {exp.description}
-                    </p>
+                    <div className="group rounded-2xl p-6 bg-surface-100/50 border border-white/5 hover:border-accent/20 transition-all duration-500">
+                      {/* Current badge */}
+                      {exp.current && (
+                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-semibold mb-4">
+                          <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+                          Atual
+                        </span>
+                      )}
 
-                    {/* Highlights */}
-                    {exp.highlights && (
-                      <ul className="space-y-2">
-                        {exp.highlights.map((h, j) => (
-                          <li
-                            key={j}
-                            className="flex items-start gap-2 text-sm text-gray-400"
-                          >
-                            <ArrowUpRight
-                              size={14}
-                              className="text-accent mt-0.5 flex-shrink-0"
-                            />
-                            {h}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+                      <h3 className="text-lg font-display font-bold text-white mb-1">
+                        {exp.title}
+                      </h3>
+                      <p className="text-accent font-medium text-sm mb-3">
+                        {exp.company}
+                      </p>
 
-          {/* Education */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-3 mb-8"
-            >
-              <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
-                📚
-              </div>
-              <h2 className="text-xl font-display font-bold text-white">
-                Formação
-              </h2>
-            </motion.div>
+                      {/* Meta */}
+                      <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500 mb-4">
+                        <span className="flex items-center gap-1">
+                          <Calendar size={12} />
+                          {exp.period}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <MapPin size={12} />
+                          {exp.location}
+                        </span>
+                      </div>
 
-            {education.map((edu, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                      <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                        {exp.description}
+                      </p>
+
+                      {/* Highlights */}
+                      {exp.highlights && (
+                        <ul className="space-y-2">
+                          {exp.highlights.map((h, j) => (
+                            <li
+                              key={j}
+                              className="flex items-start gap-2 text-sm text-gray-400"
+                            >
+                              <ArrowUpRight
+                                size={14}
+                                className="text-accent mt-0.5 flex-shrink-0"
+                              />
+                              {h}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  </Motion.div>
+                ))}
+              </Motion.div>
+            </div>
+
+            <div>
+              <Motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="rounded-2xl p-6 bg-surface-100/50 border border-white/5 hover:border-accent/20 transition-all duration-500"
+                className="flex items-center gap-3 mb-8"
               >
-                <h3 className="text-lg font-display font-bold text-white mb-1">
-                  {edu.title}
-                </h3>
-                <p className="text-accent font-medium text-sm mb-2">
-                  {edu.institution}
+                <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+                  <BookOpen />
+                </div>
+                <h2 className="text-xl font-display font-bold text-white">
+                  Formação
+                </h2>
+              </Motion.div>
+
+              {education.map((edu, i) => (
+                <Motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="rounded-2xl p-6 bg-surface-100/50 border border-white/5 hover:border-accent/20 transition-all duration-500"
+                >
+                  <h3 className="text-lg font-display font-bold text-white mb-1">
+                    {edu.title}
+                  </h3>
+                  <p className="text-accent font-medium text-sm mb-2">
+                    {edu.institution}
+                  </p>
+                  <span className="flex items-center gap-1 text-xs text-gray-500 mb-4">
+                    <Calendar size={12} />
+                    {edu.period}
+                  </span>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {edu.description}
+                  </p>
+                </Motion.div>
+              ))}
+            </div>
+
+            <div>
+              <Motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-3 mb-8"
+              >
+                <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
+                  <BookOpen />
+                </div>
+                <h2 className="text-xl font-display font-bold text-white">
+                  Certificados
+                </h2>
+              </Motion.div>
+
+              <div className="rounded-2xl p-6 bg-surface-100/50 border border-dashed border-white/15 text-gray-400">
+                <p className="text-sm mb-6">
+                  Espaço reservado para adicionar seus certificados. Aqui você pode listar os cursos e certificados que foram concluídos.
                 </p>
-                <span className="flex items-center gap-1 text-xs text-gray-500 mb-4">
-                  <Calendar size={12} />
-                  {edu.period}
-                </span>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {edu.description}
-                </p>
-              </motion.div>
-            ))}
+
+                <div className="grid gap-6 md:grid-cols-2">
+                  <div className="h-40 rounded-2xl border border-dashed border-white/20 bg-surface/70" />
+                  <div className="h-40 rounded-2xl border border-dashed border-white/20 bg-surface/70" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

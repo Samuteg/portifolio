@@ -31,38 +31,6 @@ const projects = [
     codeUrl: "https://github.com/Samuteg/DevboxCLI",
     featured: true
   },
-  {
-    title: "Uptime-monitor",
-    description:
-      "Monitoramento de sites arquitetura limpa. Construído com React, Tailwind e Framer Motion.",
-    image: uptime,
-    tags: ["React", "Tailwind", "Vite", "Framer Motion", "Go", "Goroutines"],
-    rating: "4.8",
-    date: "Mar 2026",
-    liveUrl: "https://uptime-monitor-psi-nine.vercel.app/",
-    codeUrl: "https://github.com/Samuteg/uptime-monitor",
-  },
-  {
-    title: "Portfólio",
-    description:
-      "Portfólio pessoal com design moderno, animações suaves e arquitetura limpa. Construído com React, Tailwind e Framer Motion.",
-    image: portifolio_print,
-    tags: ["React", "Tailwind", "Vite", "Framer Motion"],
-    rating: "4.8",
-    date: "Jan 2026",
-    liveUrl: "https://base-de-portifolio.vercel.app/",
-    codeUrl: "https://github.com/Samuteg/Base-de-portifolio",
-  },
-  {
-    title: "Sistema De Alunos — SDA",
-    description:
-      "Aplicação simples e eficiente para gerenciamento de registros de estudantes. Permite adicionar, visualizar, editar e excluir dados de forma organizada.",
-    image: sda_print,
-    tags: ["Python", "SQLite"],
-    rating: "4.0",
-    date: "Jun 2025",
-    codeUrl: "https://github.com/Samuteg/Sistema-de-Alunos",
-  },
 ];
 
 const containerVariants = {

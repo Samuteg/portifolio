@@ -1,11 +1,9 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Star, Calendar } from "lucide-react";
 import PageTransition from "../components/PageTransition";
-import sda_print from "../assets/sda_print.png";
-import portifolio_print from "../assets/portifolio_print.png";
 import devbox_print from "../assets/debox_print.png";
 import taskprint from "../assets/taskprint.png";
-import uptime from "../assets/uptime.png"
+import blog_print from "../assets/blog_print.png";
 
 const projects = [
   {
@@ -26,9 +24,20 @@ const projects = [
       'CLI de alta performance feita em Go para eliminar a fricção do dia-a-dia de desenvolvimento. Scaffolding de arquiteturas, git best practices e automação do "boring stuff".',
     image: devbox_print,
     tags: ["Go", "Cobra", "Viper", "Promptui", "Go-git"],
-    rating: "4.7",
+    rating: "4.1",
     date: "Jan 2026",
     codeUrl: "https://github.com/Samuteg/DevboxCLI",
+    featured: true
+  },
+  {
+    title: "SamutegDev",
+    description:
+      'Blog pessoal e portfólio de projetos, com foco em performance, SEO e experiência do usuário. Desenvolvido com Astro.',
+    image: blog_print,
+    tags: ["Astro", "Css", "React", "KeyStatic"],
+    rating: "4.9",
+    date: "Jan 2026",
+    codeUrl: "https://github.com/Samuteg/SamutegDev",
     featured: true
   },
 ];

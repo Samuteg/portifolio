@@ -19,17 +19,6 @@ const projects = [
     featured: true,
   },
   {
-    title: "DevBox CLI",
-    description:
-      'CLI de alta performance feita em Go para eliminar a fricção do dia-a-dia de desenvolvimento. Scaffolding de arquiteturas, git best practices e automação do "boring stuff".',
-    image: devbox_print,
-    tags: ["Go", "Cobra", "Viper", "Promptui", "Go-git"],
-    rating: "4.1",
-    date: "Jan 2026",
-    codeUrl: "https://github.com/Samuteg/DevboxCLI",
-    featured: true
-  },
-  {
     title: "SamutegDev",
     description:
       'Blog pessoal e portfólio de projetos, com foco em performance, SEO e experiência do usuário. Desenvolvido com Astro.',
@@ -38,6 +27,18 @@ const projects = [
     rating: "4.9",
     date: "Jan 2026",
     codeUrl: "https://github.com/Samuteg/SamutegDev",
+    featured: true
+  },
+  {
+    title: "DevBox CLI",
+    description:
+      'CLI de alta performance feita em Go para eliminar a fricção do dia-a-dia de desenvolvimento. Scaffolding de arquiteturas, git best practices e automação do "boring stuff".',
+    image: devbox_print,
+    tags: ["Go", "Cobra", "Viper", "Promptui", "Go-git"],
+    rating: "4.1",
+    date: "Jan 2026",
+    liveUrl: "https://samuteg-dev.vercel.app/",
+    codeUrl: "https://github.com/Samuteg/DevboxCLI",
     featured: true
   },
 ];

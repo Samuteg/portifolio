@@ -1,4 +1,5 @@
-import { FaGithub, FaLinkedinIn, FaXTwitter, FaInstagram } from "react-icons/fa6";
+import { Github } from "lucide-react";
+import { LinkedinIcon, XIcon, InstagramIcon } from "../icons/SocialIcons";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -20,13 +21,13 @@ const Footer = () => {
           {/* Socials */}
           <div className="flex items-center gap-3">
             {[
-              { icon: FaGithub, href: "https://github.com/Samuteg" },
-              { icon: FaLinkedinIn, href: "https://www.linkedin.com/in/samu-teg-b9002b385/" },
-              { icon: FaXTwitter, href: "https://x.com/Samuteg10" },
-              { icon: FaInstagram, href: "https://www.instagram.com/samuteg10/" },
-            ].map(({ icon: Icon, href }, i) => (
+              { icon: Github, href: "https://github.com/Samuteg" },
+              { icon: LinkedinIcon, href: "https://www.linkedin.com/in/samu-teg-b9002b385/" },
+              { icon: XIcon, href: "https://x.com/Samuteg10" },
+              { icon: InstagramIcon, href: "https://www.instagram.com/samuteg10/" },
+            ].map(({ icon: Icon, href }) => (
               <a
-                key={i}
+                key={href}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"

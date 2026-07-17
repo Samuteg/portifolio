@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Github, ExternalLink } from "lucide-react";
-import { FaLinkedinIn, FaGithub, FaXTwitter, FaInstagram } from "react-icons/fa6";
+import { Mail, MapPin, Send, Github, ExternalLink } from "lucide-react";
+import { LinkedinIcon, XIcon, InstagramIcon } from "../icons/SocialIcons";
 import PageTransition from "../components/PageTransition";
+import { useInView } from "../hooks/useInView";
 
 const contactInfo = [
   {
@@ -20,28 +20,28 @@ const contactInfo = [
 
 const socialLinks = [
   {
-    icon: FaLinkedinIn,
+    icon: LinkedinIcon,
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/samu-teg-b9002b385/",
     username: "/in/samu-teg",
     color: "hover:border-blue-500/30 hover:text-blue-400",
   },
   {
-    icon: FaGithub,
+    icon: Github,
     label: "GitHub",
     href: "https://github.com/Samuteg",
     username: "@Samuteg",
     color: "hover:border-gray-400/30 hover:text-gray-200",
   },
   {
-    icon: FaXTwitter,
+    icon: XIcon,
     label: "X / Twitter",
     href: "https://x.com/Samuteg10",
     username: "@Samuteg10",
     color: "hover:border-sky-500/30 hover:text-sky-400",
   },
   {
-    icon: FaInstagram,
+    icon: InstagramIcon,
     label: "Instagram",
     href: "https://www.instagram.com/samuteg10/",
     username: "@samuteg10",
@@ -49,37 +49,17 @@ const socialLinks = [
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
-  },
-};
-
 const ContactPage = () => {
+  const { ref: infoRef, inView: infoInView } = useInView();
+  const { ref: socialRef, inView: socialInView } = useInView();
+
   return (
     <PageTransition>
       <section className="page-section relative">
-        {/* Background */}
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[200px]" />
 
         <div className="relative z-10 max-w-4xl mx-auto">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
+          <div className="mb-16 animate-fade-up">
             <span className="text-accent text-sm font-semibold tracking-widest uppercase mb-3 block">
               Vamos conversar
             </span>
@@ -88,23 +68,22 @@ const ContactPage = () => {
               Tem um projeto em mente ou quer bater um papo? Entre em contato
               por qualquer um dos canais abaixo.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Contact Info */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="space-y-4"
+            <div
+              ref={infoRef}
+              className={`space-y-4 transition-all duration-700 ${
+                infoInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
             >
               <h2 className="text-lg font-display font-bold text-white mb-6 flex items-center gap-2">
                 <Mail size={20} className="text-accent" />
                 Informações
               </h2>
 
-              {contactInfo.map((item, i) => (
-                <motion.div key={i} variants={itemVariants}>
+              {contactInfo.map((item) => (
+                <div key={item.label}>
                   {item.href ? (
                     <a
                       href={item.href}
@@ -137,11 +116,10 @@ const ContactPage = () => {
                       </div>
                     </div>
                   )}
-                </motion.div>
+                </div>
               ))}
 
-              {/* CTA */}
-              <motion.div variants={itemVariants} className="pt-4">
+              <div className="pt-4">
                 <a
                   href="https://www.99freelas.com.br/user/Samuteg10"
                   target="_blank"
@@ -155,25 +133,23 @@ const ContactPage = () => {
                     className="opacity-0 group-hover:opacity-100 transition-opacity"
                   />
                 </a>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
-            {/* Social Links */}
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="space-y-4"
+            <div
+              ref={socialRef}
+              className={`space-y-4 transition-all duration-700 delay-100 ${
+                socialInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
             >
               <h2 className="text-lg font-display font-bold text-white mb-6 flex items-center gap-2">
                 <ExternalLink size={20} className="text-accent" />
                 Redes Sociais
               </h2>
 
-              {socialLinks.map((social, i) => (
-                <motion.a
-                  key={i}
-                  variants={itemVariants}
+              {socialLinks.map((social) => (
+                <a
+                  key={social.href}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -194,19 +170,12 @@ const ContactPage = () => {
                     size={14}
                     className="text-gray-600 group-hover:text-current transition-colors"
                   />
-                </motion.a>
+                </a>
               ))}
-            </motion.div>
+            </div>
           </div>
 
-          {/* Bottom message */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="mt-16 text-center"
-          >
+          <div className="mt-16 text-center animate-fade-up" style={{ animationDelay: "0.5s" }}>
             <div className="glass rounded-2xl p-8 border border-white/5">
               <p className="text-gray-400 text-sm">
                 💡 Prefiro conversar sobre projetos via{" "}
@@ -224,11 +193,10 @@ const ContactPage = () => {
                   className="text-accent hover:underline"
                 >
                   LinkedIn
-                </a>
-                . Respondo em até 24h!
+                </a>. Respondo em até 24h!
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </PageTransition>

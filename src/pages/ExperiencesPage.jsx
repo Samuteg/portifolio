@@ -14,12 +14,14 @@ import CertificadoSpringFundamentos from "../assets/Certificado_Fundamentos_do_S
 import CertificadoSpring from "../assets/Certificado_Minicurso_de_JavaSpring.pdf";
 import CertificadoClaude from "../assets/claude101.pdf";
 import CertificadoBdIA from "../assets/certificadoFundIAMicrosoft.pdf";
+import CertificadoNode from "../assets/NodejsCurso.pdf";
 
 import CertificadoJavaFundamentosFoto from "../assets/CertificadoFundamentosFoto.png";
 import CertificadoSpringFundamentosFoto from "../assets/fundamentoSpringFoto.png";
 import CertificadoSpringFoto from "../assets/cursoSpringFoto.png";
 import CertificadoClaudeFoto from "../assets/claude101ft.png";
 import CertificadoBdIAft from "../assets/CertificadoBradescoIAft.png";
+import CertificadoNodeft from "../assets/NodeJsFt.png";
 
 const experiences = [
   {
@@ -273,7 +275,7 @@ const ExperiencesPage = () => {
                         Java
                       </span>
                       <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-gray-300 border border-white/10">
-                        Fundamentos
+                        Rocketseat
                       </span>
                     </div>
                     <a
@@ -322,7 +324,7 @@ const ExperiencesPage = () => {
                         Java
                       </span>
                       <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-gray-300 border border-white/10">
-                        Intermediário
+                        Sololearning
                       </span>
                     </div>
                     <a
@@ -371,7 +373,7 @@ const ExperiencesPage = () => {
                         Spring Boot
                       </span>
                       <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-gray-300 border border-white/10">
-                        Fundamentos
+                        Rocketseat
                       </span>
                     </div>
                     <a
@@ -420,7 +422,7 @@ const ExperiencesPage = () => {
                         Spring Boot
                       </span>
                       <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-gray-300 border border-white/10">
-                        Spring Boot
+                        Rocketseat
                       </span>
                     </div>
                     <a
@@ -528,6 +530,54 @@ const ExperiencesPage = () => {
                   </div>
                 </div>
               </div>
+
+              <div className="rounded-2xl p-6 bg-surface-100/50 border border-dashed border-white/15 text-gray-400">
+                <div className="grid gap-6 md:grid-cols-2 items-center">
+                  <a
+                    href={CertificadoNode}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group block overflow-hidden rounded-2xl border border-dashed border-white/20 bg-surface/70 transition hover:border-accent/30"
+                  >
+                    <img
+                      src={CertificadoNodeft}
+                      alt="Certificado Node Js"
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </a>
+
+                  <div className="flex flex-col justify-center gap-4">
+                    <div>
+                      <p className="text-sm uppercase tracking-[0.25em] text-accent font-semibold mb-2">
+                        Certificação
+                      </p>
+                      <h3 className="text-lg font-display font-bold text-white mb-2">
+                        Node Js
+                      </h3>
+                      <p className="text-gray-400 text-sm leading-relaxed">
+                        Certificado de conclusão de curso de Node Js
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-3">
+                      <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs text-accent border border-accent/20">
+                        Node Js
+                      </span>
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-gray-300 border border-white/10">
+                        Instituto Federal
+                      </span>
+                    </div>
+                    <a
+                      href={CertificadoNode}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center rounded-full bg-accent px-4 py-2 text-sm font-semibold text-surface transition hover:bg-accent/90"
+                    >
+                      Ver certificado
+                    </a>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>

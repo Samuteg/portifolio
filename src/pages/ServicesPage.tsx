@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
 import { Code, Palette, Settings, Smartphone } from "lucide-react";
 import PageTransition from "../components/PageTransition";
+import { useInView } from "../hooks/useInView";
 
 const services = [
   {
@@ -45,38 +45,22 @@ const services = [
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
-  },
-};
-
 const ServicesPage = () => {
+  const { ref: headerRef, inView: headerInView } = useInView();
+  const { ref: gridRef, inView: gridInView } = useInView();
+  const { ref: ctaRef, inView: ctaInView } = useInView();
+
   return (
     <PageTransition>
       <section className="page-section relative">
-        {/* Background orb */}
         <div className="absolute top-20 right-0 w-96 h-96 bg-accent/5 rounded-full blur-[150px]" />
 
         <div className="relative z-10 max-w-6xl mx-auto">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
+          <div
+            ref={headerRef}
+            className={`mb-16 transition-all duration-700 ${
+              headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
           >
             <span className="text-accent text-sm font-semibold tracking-widest uppercase mb-3 block">
               O que eu faço
@@ -86,46 +70,44 @@ const ServicesPage = () => {
               Soluções completas para transformar suas ideias em produtos
               digitais de alta qualidade.
             </p>
-          </motion.div>
+          </div>
 
-          {/* Services Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+          <div
+            ref={gridRef}
             className="grid grid-cols-1 md:grid-cols-2 gap-6"
           >
             {services.map((service, i) => (
-              <motion.div
+              <div
                 key={i}
-                variants={cardVariants}
-                whileHover={{ y: -6, scale: 1.01 }}
-                className={`group relative rounded-3xl p-8 bg-surface-100/50 border border-white/5 ${service.borderColor} transition-all duration-500 overflow-hidden`}
+                className={`group relative rounded-3xl p-8 bg-surface-100/50 border border-white/5 ${service.borderColor} transition-all duration-500 overflow-hidden hover:-translate-y-1.5 hover:scale-[1.01] ${
+                  gridInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                }`}
+                style={{
+                  transitionDelay: `${i * 0.15}s`,
+                  transitionProperty: "opacity, transform",
+                  transitionDuration: "0.6s",
+                  transitionTimingFunction: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                }}
               >
-                {/* Gradient background on hover */}
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl`}
                 />
 
                 <div className="relative z-10">
-                  {/* Icon */}
                   <div
                     className={`w-14 h-14 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center ${service.iconColor} mb-6 group-hover:scale-110 transition-transform duration-300`}
                   >
                     <service.icon size={26} />
                   </div>
 
-                  {/* Title */}
                   <h3 className="text-xl font-display font-bold text-white mb-3">
                     {service.title}
                   </h3>
 
-                  {/* Description */}
                   <p className="text-gray-400 text-sm leading-relaxed mb-5">
                     {service.description}
                   </p>
 
-                  {/* Tags */}
                   <div className="flex flex-wrap gap-2">
                     {service.tags.map((tag, j) => (
                       <span
@@ -137,16 +119,15 @@ const ServicesPage = () => {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
-          {/* Bottom CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.5 }}
-            className="mt-16 text-center"
+          <div
+            ref={ctaRef}
+            className={`mt-16 text-center transition-all duration-700 delay-700 ${
+              ctaInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
           >
             <div className="glass rounded-2xl p-8 max-w-2xl mx-auto border border-accent/10">
               <h3 className="text-xl font-display font-bold text-white mb-2">
@@ -165,7 +146,7 @@ const ServicesPage = () => {
                 Solicitar orçamento
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </PageTransition>

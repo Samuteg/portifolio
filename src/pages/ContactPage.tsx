@@ -82,8 +82,8 @@ const ContactPage = () => {
                 Informações
               </h2>
 
-              {contactInfo.map((item, i) => (
-                <div key={i}>
+              {contactInfo.map((item) => (
+                <div key={item.label}>
                   {item.href ? (
                     <a
                       href={item.href}
@@ -147,9 +147,9 @@ const ContactPage = () => {
                 Redes Sociais
               </h2>
 
-              {socialLinks.map((social, i) => (
+              {socialLinks.map((social) => (
                 <a
-                  key={i}
+                  key={social.href}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -193,8 +193,7 @@ const ContactPage = () => {
                   className="text-accent hover:underline"
                 >
                   LinkedIn
-                </a>
-                . Respondo em até 24h!
+                </a>. Respondo em até 24h!
               </p>
             </div>
           </div>

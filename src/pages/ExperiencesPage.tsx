@@ -171,7 +171,7 @@ const ExperiencesPage = () => {
                 <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-accent/40 via-accent/20 to-transparent" />
 
                 {experiences.map((exp, i) => (
-                  <TimelineItem key={i} index={i}>
+                  <TimelineItem key={exp.title} index={i}>
                     <div className="absolute left-3 top-6 w-4 h-4 rounded-full bg-accent shadow-lg shadow-accent/30 ring-4 ring-surface">
                       {exp.current && (
                         <div className="absolute inset-0 rounded-full bg-accent animate-ping opacity-30" />
@@ -181,7 +181,7 @@ const ExperiencesPage = () => {
                     <div className="group rounded-2xl p-6 bg-surface-100/50 border border-white/5 hover:border-accent/20 transition-all duration-500">
                       {exp.current && (
                         <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-xs font-semibold mb-4">
-                          <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+                          <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />{" "}
                           Atual
                         </span>
                       )}
@@ -210,9 +210,9 @@ const ExperiencesPage = () => {
 
                       {exp.highlights && (
                         <ul className="space-y-2">
-                          {exp.highlights.map((h, j) => (
+                          {exp.highlights.map((h) => (
                             <li
-                              key={j}
+                              key={h}
                               className="flex items-start gap-2 text-sm text-gray-400"
                             >
                               <ArrowUpRight
@@ -245,9 +245,9 @@ const ExperiencesPage = () => {
                 </h2>
               </div>
 
-              {education.map((edu, i) => (
+              {education.map((edu) => (
                 <div
-                  key={i}
+                  key={edu.title}
                   className="rounded-2xl p-6 bg-surface-100/50 border border-white/5 hover:border-accent/20 transition-all duration-500 animate-fade-up"
                   style={{ animationDelay: "0.2s" }}
                 >

@@ -78,7 +78,7 @@ const ServicesPage = () => {
           >
             {services.map((service, i) => (
               <div
-                key={i}
+                key={service.title}
                 className={`group relative rounded-3xl p-8 bg-surface-100/50 border border-white/5 ${service.borderColor} transition-all duration-500 overflow-hidden hover:-translate-y-1.5 hover:scale-[1.01] ${
                   gridInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
@@ -109,9 +109,9 @@ const ServicesPage = () => {
                   </p>
 
                   <div className="flex flex-wrap gap-2">
-                    {service.tags.map((tag, j) => (
+                    {service.tags.map((tag) => (
                       <span
-                        key={j}
+                        key={tag}
                         className="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-gray-400 border border-white/5"
                       >
                         {tag}

@@ -66,8 +66,8 @@ const HomePage = () => {
                       className="flex flex-col transition-transform duration-500 ease-in-out"
                       style={{ transform: `translateY(-${roleIndex * 32}px)` }}
                     >
-                      {roles.map((role, i) => (
-                        <span key={i} className="h-8 flex items-center font-medium text-accent-400">
+                      {roles.map((role) => (
+                        <span key={role} className="h-8 flex items-center font-medium text-accent-400">
                           {role}
                         </span>
                       ))}
@@ -105,9 +105,9 @@ const HomePage = () => {
               </div>
 
               <div className={`flex items-center gap-3 justify-center lg:justify-start transition-all duration-700 delay-500 ${textInView ? "opacity-100" : "opacity-0"}`}>
-                {socials.map(({ icon: Icon, href, label }, i) => (
+                {socials.map(({ icon: Icon, href, label }) => (
                   <a
-                    key={i}
+                    key={href}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"

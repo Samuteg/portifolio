@@ -153,8 +153,8 @@ const StackCard = ({ title, icon, skills }: StackCardProps) => {
         </div>
 
         <div className="grid grid-cols-1 gap-2">
-          {skills.map((skill, index) => (
-            <SkillItem key={index} {...skill} />
+          {skills.map((skill) => (
+            <SkillItem key={skill.label} {...skill} />
           ))}
         </div>
       </div>
@@ -234,9 +234,9 @@ export default function SkillsPage() {
               { value: "10+", label: "Projetos concluídos" },
               { value: "5+", label: "Tecnologias dominadas" },
               { value: "∞", label: "Vontade de aprender" },
-            ].map((stat, i) => (
+            ].map((stat) => (
               <div
-                key={i}
+                key={stat.label}
                 className="text-center p-6 rounded-2xl glass border border-white/5 hover:border-accent/20 transition-colors duration-300"
               >
                 <div className="text-3xl font-display font-bold gradient-text mb-1">

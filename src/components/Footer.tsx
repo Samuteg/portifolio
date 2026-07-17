@@ -25,9 +25,9 @@ const Footer = () => {
               { icon: LinkedinIcon, href: "https://www.linkedin.com/in/samu-teg-b9002b385/" },
               { icon: XIcon, href: "https://x.com/Samuteg10" },
               { icon: InstagramIcon, href: "https://www.instagram.com/samuteg10/" },
-            ].map(({ icon: Icon, href }, i) => (
+            ].map(({ icon: Icon, href }) => (
               <a
-                key={i}
+                key={href}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"

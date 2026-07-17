@@ -87,9 +87,9 @@ const ProjectCard = ({ project, index }: { project: typeof projects[number]; ind
         </p>
 
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.tags.map((tag, j) => (
-            <span
-              key={j}
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
               className="px-3 py-1 rounded-full text-xs font-medium bg-white/5 text-gray-400 border border-white/5"
             >
               {tag}
@@ -157,7 +157,7 @@ const ProjectsPage = () => {
 
           <div className="flex flex-col gap-8">
             {projects.map((project, i) => (
-              <ProjectCard key={i} project={project} index={i} />
+              <ProjectCard key={project.title} project={project} index={i} />
             ))}
           </div>
         </div>

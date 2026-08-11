@@ -180,7 +180,7 @@ const ContactPage = () => {
               <p className="text-gray-400 text-sm">
                 💡 Prefiro conversar sobre projetos via{" "}
                 <a
-                  href="mailto:samuteg10@gmail.com"
+                  href="mailto:samuneveslopes@gmail.com"
                   className="text-accent hover:underline"
                 >
                   email

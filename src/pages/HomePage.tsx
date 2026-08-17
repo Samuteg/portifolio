@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ArrowRight, Sparkles, Github } from "lucide-react";
+import { ArrowRight, Sparkles, Github, X, Send } from "lucide-react";
 import { LinkedinIcon, XIcon, InstagramIcon } from "../icons/SocialIcons";
 import PageTransition from "../components/PageTransition";
 import { useInView } from "../hooks/useInView";
@@ -16,6 +16,8 @@ const roles = ["Full-Stack Developer", "Web Designer", "Freelancer", "Automaçã
 
 const HomePage = () => {
   const [roleIndex, setRoleIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const { ref: textRef, inView: textInView } = useInView();
   const { ref: imageRef, inView: imageInView } = useInView();
 
@@ -25,6 +27,20 @@ const HomePage = () => {
     }, 2500);
     return () => clearInterval(interval);
   }, []);
+
+  const handleHireClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsModalOpen(true);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const text = `Olá, Samuel! Meu nome é ${formData.name} (${formData.email}).\n\nMensagem: ${formData.message}`;
+    const encodedText = encodeURIComponent(text);
+    window.open(`https://wa.me/?text=${encodedText}`, "_blank");
+    setIsModalOpen(false);
+    setFormData({ name: "", email: "", message: "" });
+  };
 
   return (
     <PageTransition>
@@ -84,15 +100,14 @@ const HomePage = () => {
               </p>
 
               <div className={`flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-10 transition-all duration-700 delay-300 ${textInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-                <a
-                  href="https://www.99freelas.com.br/user/Samuteg10"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-accent to-accent-dark text-white font-semibold rounded-2xl shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.02] transition-all duration-300"
+                <button
+                  type="button"
+                  onClick={handleHireClick}
+                  className="group relative inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-accent to-accent-dark text-white font-semibold rounded-2xl shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.02] transition-all duration-300 cursor-pointer"
                 >
                   Me contrate
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </a>
+                </button>
                 <a
                   href="https://github.com/Samuteg"
                   target="_blank"
@@ -148,6 +163,79 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
+          <div className="relative w-full max-w-lg p-8 rounded-3xl bg-surface-100 border border-white/10 shadow-2xl glass-strong">
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-6 right-6 p-2 text-gray-400 hover:text-white rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
+            >
+              <X size={20} />
+            </button>
+
+            <h2 className="text-2xl font-display font-bold text-white mb-2">
+              Solicitar Orçamento
+            </h2>
+            <p className="text-gray-400 text-sm mb-6">
+              Preencha os campos abaixo para iniciar uma conversa diretamente no WhatsApp.
+            </p>
+
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-xs font-medium text-gray-400 mb-1">
+                  Seu nome
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="Ex: Maria Silva"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-gray-400 mb-1">
+                  Seu e-mail
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="Ex: maria@email.com"
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-gray-400 mb-1">
+                  Mensagem ou detalhes do projeto
+                </label>
+                <textarea
+                  required
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Descreva brevemente o que você precisa..."
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors text-sm resize-none"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-accent to-accent-dark text-white font-semibold rounded-xl shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.01] transition-all duration-300 cursor-pointer"
+              >
+                <Send size={18} />
+                Enviar pelo WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </PageTransition>
   );
 };

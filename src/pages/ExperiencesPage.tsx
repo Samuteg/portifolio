@@ -80,7 +80,7 @@ const CertCard = ({ pdf, image, alt, title, tech, org }: {
   return (
     <div
       ref={ref}
-      className={`rounded-2xl p-6 bg-surface-100/50 border border-dashed border-white/15 text-gray-400 transition-all duration-700 ${
+      className={`rounded-2xl p-6 bg-surface-100/50 border border-white/5 hover:border-accent/20 transition-all duration-700 ${
         inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
     >
@@ -89,7 +89,7 @@ const CertCard = ({ pdf, image, alt, title, tech, org }: {
           href={pdf}
           target="_blank"
           rel="noreferrer"
-          className="group block overflow-hidden rounded-2xl border border-dashed border-white/20 bg-surface/70 transition hover:border-accent/30"
+          className="group block overflow-hidden rounded-2xl border border-white/10 bg-surface/70 transition hover:border-accent/30"
         >
           <img
             src={image}
@@ -278,7 +278,7 @@ const ExperiencesPage = () => {
                 </h2>
               </div>
 
-              <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <CertCard
                   pdf={CertificadoJavaFundamentos}
                   image={CertificadoJavaFundamentosFoto}

@@ -140,15 +140,15 @@ export default function SkillsPage() {
               title="DevOps & Tools"
               icon={<Wrench className="w-5 h-5" />}
               skills={[
-                { icon: <Box className="w-4 h-4" />, label: "Docker", level: 2 },
+                { icon: <Box className="w-4 h-4" />, label: "Docker", level: 4 },
                 { icon: <Terminal className="w-4 h-4" />, label: "Linux", level: 5 },
                 { icon: <GitBranch className="w-4 h-4" />, label: "Git & GitHub", level: 5 },
                 { icon: <Wrench className="w-4 h-4" />, label: "CI / CD", level: 2 },
                 { icon: <Globe className="w-4 h-4" />, label: "Deployment", level: 4 },
-                { icon: <Wrench className="w-4 h-4" />, label: "Automação", level: 2 },
+                { icon: <Wrench className="w-4 h-4" />, label: "Automação", level: 1 },
               ]}
             />
-          </div>          
+          </div>
         </div>
       </section>
     </PageTransition>

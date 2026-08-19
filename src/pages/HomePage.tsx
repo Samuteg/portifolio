@@ -94,7 +94,7 @@ const HomePage = () => {
 
               <p className={`text-gray-400 text-base sm:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8 transition-all duration-700 delay-200 ${textInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
                 Desenvolvedor focado em construir soluções eficientes e funcionais,
-                com experiência em Python, React e Go. Forte interesse em sistemas,
+                com experiência em Java, React e Go. Forte interesse em sistemas,
                 automação e projetos que combinam lógica, design e uma experiência
                 de usuário sólida.
               </p>

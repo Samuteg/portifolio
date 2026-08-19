@@ -3,7 +3,7 @@ import PageTransition from "../components/PageTransition";
 import { useInView } from "../hooks/useInView";
 import devbox_print from "../assets/debox_print.webp";
 import taskprint from "../assets/taskprint.webp";
-import blog_print from "../assets/blog_print.webp";
+import blog_print from "../assets/blog_print.png";
 
 const projects = [
   {
@@ -16,7 +16,7 @@ const projects = [
     date: "Mar 2026",
     liveUrl: "https://task-nest-lac.vercel.app/",
     codeUrl: "https://github.com/Samuteg/TaskNest",
-    featured: true,
+    featured: false,
   },
   {
     title: "SamutegDev",
@@ -26,6 +26,7 @@ const projects = [
     tags: ["Astro", "Css", "React", "KeyStatic"],
     rating: "4.9",
     date: "Jan 2026",
+    liveUrl: "https://samuteg-dev.vercel.app/",
     codeUrl: "https://github.com/Samuteg/SamutegDev",
     featured: true
   },
@@ -37,9 +38,8 @@ const projects = [
     tags: ["Go", "Cobra", "Viper", "Promptui", "Go-git"],
     rating: "4.1",
     date: "Jan 2026",
-    liveUrl: "https://samuteg-dev.vercel.app/",
     codeUrl: "https://github.com/Samuteg/DevboxCLI",
-    featured: true
+    featured: false,
   },
 ];
 

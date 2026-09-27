@@ -17,7 +17,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           'vendor-react': ['react', 'react-dom'],
-          'vendor-router': ['react-router-dom'],
           'vendor-icons': ['lucide-react'],
           'vendor-analytics': ['@vercel/analytics', '@vercel/speed-insights'],
         },

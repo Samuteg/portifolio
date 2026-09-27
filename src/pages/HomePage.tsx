@@ -64,11 +64,6 @@ const HomePage = () => {
               className={`transition-all duration-700 ${textInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: "0.1s" }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-accent/20 mb-8">
-                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                <span className="text-sm text-gray-400">Disponível para projetos</span>
-              </div>
-
               <h1 className={`font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-4 transition-all duration-700 delay-75 ${textInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
                 Olá, eu sou{" "}
                 <span className="gradient-text text-shadow-glow">Samuel</span>

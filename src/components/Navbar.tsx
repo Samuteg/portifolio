@@ -1,4 +1,3 @@
-import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   House,
@@ -12,18 +11,18 @@ import {
 } from "lucide-react";
 
 const navLinks = [
-  { to: "/", label: "Home", icon: House },
-  { to: "/services", label: "Serviços", icon: Toolbox },
-  { to: "/skills", label: "Skills", icon: NotebookTabs },
-  { to: "/projects", label: "Projetos", icon: Folders },
-  { to: "/experiences", label: "Experiência", icon: BriefcaseBusiness },
-  { to: "/contact", label: "Contato", icon: Contact },
+  { id: "home", label: "Home", icon: House },
+  { id: "services", label: "Serviços", icon: Toolbox },
+  { id: "skills", label: "Skills", icon: NotebookTabs },
+  { id: "projects", label: "Projetos", icon: Folders },
+  { id: "experiences", label: "Experiência", icon: BriefcaseBusiness },
+  { id: "contact", label: "Contato", icon: Contact },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -32,10 +31,21 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    setMobileOpen(false);
-  }, [location.pathname]);
+    const handleScrollSpy = () => {
+      const scrollPos = window.scrollY + 120;
+      let current = navLinks[0].id;
+      for (const link of navLinks) {
+        const el = document.getElementById(link.id);
+        if (el && el.offsetTop <= scrollPos) current = link.id;
+      }
+      setActiveSection(current);
+    };
+    handleScrollSpy();
+    window.addEventListener("scroll", handleScrollSpy, { passive: true });
+    return () => window.removeEventListener("scroll", handleScrollSpy);
+  }, []);
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (id: string) => activeSection === id;
 
   return (
     <header
@@ -47,32 +57,33 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
-          <Link to="/" className="group flex items-center gap-2">
+          <a href="#home" className="group flex items-center gap-2">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-accent/20 group-hover:shadow-accent/40 transition-shadow duration-300">
               S
             </div>
             <span className="text-xl font-display font-bold text-white group-hover:text-accent-400 transition-colors duration-300">
               Samuel
             </span>
-          </Link>
+          </a>
 
           <nav className="hidden md:flex items-center gap-1">
-            {navLinks.map(({ to, label, icon: Icon }) => (
-              <Link
-                key={to}
-                to={to}
+            {navLinks.map(({ id, label, icon: Icon }) => (
+              <a
+                key={id}
+                href={`#${id}`}
+                onClick={() => setActiveSection(id)}
                 className={`relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
-                  isActive(to)
+                  isActive(id)
                     ? "text-accent-400 bg-accent/10"
                     : "text-gray-400 hover:text-white hover:bg-white/5"
                 }`}
               >
                 <Icon size={16} />
                 <span>{label}</span>
-                {isActive(to) && (
+                {isActive(id) && (
                   <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-accent rounded-full" />
                 )}
-              </Link>
+              </a>
             ))}
           </nav>
 
@@ -93,19 +104,23 @@ const Navbar = () => {
         }`}
       >
         <nav className="glass-strong border-t border-white/5 p-4 flex flex-col gap-1">
-          {navLinks.map(({ to, label, icon: Icon }) => (
-            <Link
-              key={to}
-              to={to}
+          {navLinks.map(({ id, label, icon: Icon }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              onClick={() => {
+                setActiveSection(id);
+                setMobileOpen(false);
+              }}
               className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                isActive(to)
+                isActive(id)
                   ? "text-accent-400 bg-accent/10"
                   : "text-gray-400 hover:text-white hover:bg-white/5"
               }`}
             >
               <Icon size={18} />
               <span>{label}</span>
-            </Link>
+            </a>
           ))}
         </nav>
       </div>

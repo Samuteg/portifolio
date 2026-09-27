@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowRight, Sparkles, Github, X, Send } from "lucide-react";
 import { LinkedinIcon, XIcon, InstagramIcon } from "../icons/SocialIcons";
 import PageTransition from "../components/PageTransition";
@@ -14,10 +14,14 @@ const socials = [
 
 const roles = ["Full-Stack Developer", "Web Designer", "Freelancer", "Automação & Scripts"];
 
+const WHATSAPP_NUMBER = "551158491828";
+
 const HomePage = () => {
   const [roleIndex, setRoleIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const hireButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const { ref: textRef, inView: textInView } = useInView();
   const { ref: imageRef, inView: imageInView } = useInView();
 
@@ -28,6 +32,20 @@ const HomePage = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    if (!isModalOpen) return;
+    closeButtonRef.current?.focus();
+    const trigger = hireButtonRef.current;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsModalOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      trigger?.focus();
+    };
+  }, [isModalOpen]);
+
   const handleHireClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setIsModalOpen(true);
@@ -37,7 +55,7 @@ const HomePage = () => {
     e.preventDefault();
     const text = `Olá, Samuel! Meu nome é ${formData.name} (${formData.email}).\n\nMensagem: ${formData.message}`;
     const encodedText = encodeURIComponent(text);
-    window.open(`https://wa.me/?text=${encodedText}`, "_blank");
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedText}`, "_blank");
     setIsModalOpen(false);
     setFormData({ name: "", email: "", message: "" });
   };
@@ -97,6 +115,7 @@ const HomePage = () => {
               <div className={`flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-10 transition-all duration-700 delay-300 ${textInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
                 <button
                   type="button"
+                  ref={hireButtonRef}
                   onClick={handleHireClick}
                   className="group relative inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-accent to-accent-dark text-white font-semibold rounded-2xl shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.02] transition-all duration-300 cursor-pointer"
                 >
@@ -160,10 +179,21 @@ const HomePage = () => {
       </section>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
-          <div className="relative w-full max-w-lg p-8 rounded-3xl bg-surface-100 border border-white/10 shadow-2xl glass-strong">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in"
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Solicitar orçamento"
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-lg p-8 rounded-3xl bg-surface-100 border border-white/10 shadow-2xl glass-strong"
+          >
             <button
               type="button"
+              ref={closeButtonRef}
+              aria-label="Fechar"
               onClick={() => setIsModalOpen(false)}
               className="absolute top-6 right-6 p-2 text-gray-400 hover:text-white rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
             >

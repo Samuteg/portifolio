@@ -15,35 +15,43 @@ const PageLoader = () => (
   </div>
 );
 
+const sections = [
+  { id: "home", label: "Início", Component: HomePage },
+  { id: "services", label: "Serviços", Component: ServicesPage },
+  { id: "skills", label: "Skills", Component: SkillsPage },
+  { id: "projects", label: "Projetos", Component: ProjectsPage },
+  { id: "experiences", label: "Experiência", Component: ExperiencesPage },
+  { id: "contact", label: "Contato", Component: ContactPage },
+];
+
 export default function App() {
   return (
     <div className="min-h-screen bg-[#050505] text-white relative overflow-hidden noise-overlay">
+      <a
+        href="#home"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:rounded-xl focus:bg-accent focus:text-white focus:text-sm focus:font-medium"
+      >
+        Pular para o conteúdo
+      </a>
       <div className="bg-orb bg-orb-1" />
       <div className="bg-orb bg-orb-2" />
 
       <Navbar />
 
       <main className="relative z-10 pt-20">
-        <Suspense fallback={<PageLoader />}>
-          <div id="home" className="scroll-mt-20">
-            <HomePage />
-          </div>
-          <div id="services" className="scroll-mt-20">
-            <ServicesPage />
-          </div>
-          <div id="skills" className="scroll-mt-20">
-            <SkillsPage />
-          </div>
-          <div id="projects" className="scroll-mt-20">
-            <ProjectsPage />
-          </div>
-          <div id="experiences" className="scroll-mt-20">
-            <ExperiencesPage />
-          </div>
-          <div id="contact" className="scroll-mt-20">
-            <ContactPage />
-          </div>
-        </Suspense>
+        {sections.map(({ id, label, Component }) => (
+          <section
+            key={id}
+            id={id}
+            aria-label={label}
+            tabIndex={-1}
+            className="scroll-mt-20 focus:outline-none"
+          >
+            <Suspense fallback={<PageLoader />}>
+              <Component />
+            </Suspense>
+          </section>
+        ))}
       </main>
 
       <Footer />

@@ -47,6 +47,12 @@ const Navbar = () => {
 
   const isActive = (id: string) => activeSection === id;
 
+  const handleNavClick = (id: string) => {
+    setActiveSection(id);
+    setMobileOpen(false);
+    document.getElementById(id)?.focus({ preventScroll: true });
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
@@ -57,7 +63,11 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
-          <a href="#home" className="group flex items-center gap-2">
+          <a
+            href="#home"
+            onClick={() => handleNavClick("home")}
+            className="group flex items-center gap-2"
+          >
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-accent/20 group-hover:shadow-accent/40 transition-shadow duration-300">
               S
             </div>
@@ -71,7 +81,8 @@ const Navbar = () => {
               <a
                 key={id}
                 href={`#${id}`}
-                onClick={() => setActiveSection(id)}
+                onClick={() => handleNavClick(id)}
+                aria-current={isActive(id) ? "true" : undefined}
                 className={`relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
                   isActive(id)
                     ? "text-accent-400 bg-accent/10"
@@ -108,10 +119,8 @@ const Navbar = () => {
             <a
               key={id}
               href={`#${id}`}
-              onClick={() => {
-                setActiveSection(id);
-                setMobileOpen(false);
-              }}
+              onClick={() => handleNavClick(id)}
+              aria-current={isActive(id) ? "true" : undefined}
               className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
                 isActive(id)
                   ? "text-accent-400 bg-accent/10"

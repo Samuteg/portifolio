@@ -24,7 +24,7 @@ describe("Navbar", () => {
     render(<Navbar />);
     const services = screen.getAllByRole("link", { name: "Serviços" })[0];
     fireEvent.click(services);
-    expect(services).toHaveAttribute("aria-current", "true");
+    expect(services).toHaveAttribute("aria-current", "page");
   });
 
   it("moves focus to the section on navigation", () => {
@@ -39,5 +39,12 @@ describe("Navbar", () => {
     const skills = screen.getAllByRole("link", { name: "Skills" })[0];
     fireEvent.click(skills);
     expect(document.getElementById("skills")).toHaveFocus();
+  });
+
+  it("associates the menu button with the mobile panel", () => {
+    render(<Navbar />);
+    const button = screen.getByRole("button", { name: /abrir menu/i });
+    expect(button).toHaveAttribute("aria-controls", "mobile-nav");
+    expect(document.getElementById("mobile-nav")).toBeInTheDocument();
   });
 });

@@ -5,35 +5,37 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative z-10 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6 py-10">
+    <footer className="relative z-10 border-t border-line">
+      <div className="max-w-6xl mx-auto px-6 py-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Left */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center text-white font-bold text-sm">
+            <span
+              aria-hidden="true"
+              className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-white font-bold text-sm"
+            >
               S
-            </div>
-            <span className="text-sm text-gray-500">
+            </span>
+            <span className="text-sm text-ink-mute">
               © {currentYear} Samuel. Todos os direitos reservados.
             </span>
           </div>
 
-          {/* Socials */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             {[
-              { icon: Github, href: "https://github.com/Samuteg" },
-              { icon: LinkedinIcon, href: "https://www.linkedin.com/in/samu-teg-b9002b385/" },
-              { icon: XIcon, href: "https://x.com/Samuteg10" },
-              { icon: InstagramIcon, href: "https://www.instagram.com/samuteg10/" },
-            ].map(({ icon: Icon, href }) => (
+              { icon: Github, href: "https://github.com/Samuteg", label: "GitHub" },
+              { icon: LinkedinIcon, href: "https://www.linkedin.com/in/samu-teg-b9002b385/", label: "LinkedIn" },
+              { icon: XIcon, href: "https://x.com/Samuteg10", label: "X" },
+              { icon: InstagramIcon, href: "https://www.instagram.com/samuteg10/", label: "Instagram" },
+            ].map(({ icon: Icon, href, label }) => (
               <a
                 key={href}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-gray-500 hover:text-accent hover:border-accent/30 hover:bg-accent/5 transition-all duration-300"
+                aria-label={label}
+                className="w-11 h-11 rounded-xl flex items-center justify-center text-ink-mute hover:text-ink border border-transparent hover:border-line transition-colors duration-200"
               >
-                <Icon size={16} />
+                <Icon size={17} />
               </a>
             ))}
           </div>

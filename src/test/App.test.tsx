@@ -26,4 +26,11 @@ describe("App", () => {
     expect(await screen.findAllByText("Experiência")).not.toHaveLength(0);
     expect(await screen.findAllByText("Contato")).not.toHaveLength(0);
   });
+
+  it("offers a skip link that targets the main content", () => {
+    render(<App />);
+    const skip = screen.getByRole("link", { name: /pular para o conteúdo/i });
+    expect(skip).toHaveAttribute("href", "#main-content");
+    expect(document.getElementById("main-content")).toBeInTheDocument();
+  });
 });

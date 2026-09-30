@@ -26,7 +26,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -55,44 +55,51 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "glass-strong shadow-lg shadow-black/20"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
+        scrolled || mobileOpen ? "nav-glass" : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="max-w-6xl mx-auto px-6 py-3">
         <div className="flex justify-between items-center">
           <a
             href="#home"
             onClick={() => handleNavClick("home")}
-            className="group flex items-center gap-2"
+            className="flex items-center gap-2.5 min-h-[44px]"
+            aria-label="S Samuel ~/dev — início"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-accent/20 group-hover:shadow-accent/40 transition-shadow duration-300">
+            <span
+              aria-hidden="true"
+              className="w-9 h-9 rounded-xl bg-accent flex items-center justify-center text-white font-bold text-base"
+            >
               S
-            </div>
-            <span className="text-xl font-display font-bold text-white group-hover:text-accent-400 transition-colors duration-300">
+            </span>{" "}
+            <span className="text-lg font-display font-bold text-ink">
               Samuel
+            </span>{" "}
+            <span className="hidden sm:inline font-mono text-xs text-ink-mute">
+              ~/dev
             </span>
           </a>
 
-          <nav className="hidden md:flex items-center gap-1">
-            {navLinks.map(({ id, label, icon: Icon }) => (
+          <nav className="hidden md:flex items-center gap-1" aria-label="Navegação principal">
+            {navLinks.map(({ id, label }) => (
               <a
                 key={id}
                 href={`#${id}`}
                 onClick={() => handleNavClick(id)}
-                aria-current={isActive(id) ? "true" : undefined}
-                className={`relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+                aria-current={isActive(id) ? "page" : undefined}
+                className={`relative flex items-center min-h-[44px] px-4 rounded-xl text-sm font-medium transition-colors duration-200 ${
                   isActive(id)
-                    ? "text-accent-400 bg-accent/10"
-                    : "text-gray-400 hover:text-white hover:bg-white/5"
+                    ? "text-ink bg-wash"
+                    : "text-ink-mute hover:text-ink hover:bg-wash"
                 }`}
               >
-                <Icon size={16} />
-                <span>{label}</span>
+                {label}
                 {isActive(id) && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-accent rounded-full" />
+                  <span
+                    aria-hidden="true"
+                    className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent"
+                  />
                 )}
               </a>
             ))}
@@ -101,8 +108,10 @@ const Navbar = () => {
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden relative z-50 p-2 rounded-xl bg-white/5 text-white hover:bg-white/10 transition-colors"
-            aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+            aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
+            className="md:hidden w-11 h-11 flex items-center justify-center rounded-xl text-ink border border-line"
           >
             {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -111,23 +120,23 @@ const Navbar = () => {
 
       <div
         className={`md:hidden overflow-hidden transition-all duration-300 ${
-          mobileOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+          mobileOpen ? "max-h-96 opacity-100 visible" : "max-h-0 opacity-0 invisible"
         }`}
       >
-        <nav className="glass-strong border-t border-white/5 p-4 flex flex-col gap-1">
+        <nav id="mobile-nav" className="sheet-glass px-4 py-3 flex flex-col gap-1" aria-label="Navegação móvel">
           {navLinks.map(({ id, label, icon: Icon }) => (
             <a
               key={id}
               href={`#${id}`}
               onClick={() => handleNavClick(id)}
-              aria-current={isActive(id) ? "true" : undefined}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+              aria-current={isActive(id) ? "page" : undefined}
+              className={`flex items-center gap-3 px-4 min-h-[44px] rounded-xl text-sm font-medium transition-colors duration-200 ${
                 isActive(id)
-                  ? "text-accent-400 bg-accent/10"
-                  : "text-gray-400 hover:text-white hover:bg-white/5"
+                  ? "text-ink bg-wash"
+                  : "text-ink-mute hover:text-ink"
               }`}
             >
-              <Icon size={18} />
+              <Icon size={18} aria-hidden="true" />
               <span>{label}</span>
             </a>
           ))}

@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Sparkles, Github, X, Send } from "lucide-react";
+import { ArrowRight, Github, X, Send } from "lucide-react";
 import { LinkedinIcon, XIcon, InstagramIcon } from "../icons/SocialIcons";
 import PageTransition from "../components/PageTransition";
-import { useInView } from "../hooks/useInView";
+import Reveal from "../components/Reveal";
 import profile from "../assets/profile.webp";
 
 const socials = [
@@ -12,32 +12,42 @@ const socials = [
   { icon: InstagramIcon, href: "https://www.instagram.com/samuteg10/", label: "Instagram" },
 ];
 
-const roles = ["Full-Stack Developer", "Web Designer", "Freelancer", "Automação & Scripts"];
-
 const WHATSAPP_NUMBER = "551158491828";
 
 const HomePage = () => {
-  const [roleIndex, setRoleIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const hireButtonRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const { ref: textRef, inView: textInView } = useInView();
-  const { ref: imageRef, inView: imageInView } = useInView();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRoleIndex((prev) => (prev + 1) % roles.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isModalOpen) return;
     closeButtonRef.current?.focus();
     const trigger = hireButtonRef.current;
+    const dialog = dialogRef.current;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsModalOpen(false);
+      if (e.key === "Escape") {
+        setIsModalOpen(false);
+        return;
+      }
+      if (e.key !== "Tab" || !dialog) return;
+      const focusables = Array.from(
+        dialog.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])'
+        )
+      );
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const active = document.activeElement;
+      if (e.shiftKey && (active === first || !dialog.contains(active))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || !dialog.contains(active))) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => {
@@ -62,78 +72,52 @@ const HomePage = () => {
 
   return (
     <PageTransition>
-      <section className="page-section flex items-center justify-center relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(183,75,75,0.3) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(183,75,75,0.3) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        <div className="absolute top-1/4 right-[15%] w-72 h-72 bg-accent/10 rounded-full blur-[120px] animate-float" />
-        <div className="absolute bottom-1/4 left-[10%] w-60 h-60 bg-accent-dark/10 rounded-full blur-[100px] animate-float" style={{animationDelay: '3s'}} />
-
-        <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-20">
+      <section className="page-section flex items-center justify-center">
+        <div className="w-full max-w-6xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-20">
           <div className="flex-1 text-center lg:text-left">
-            <div
-              ref={textRef}
-              className={`transition-all duration-700 ${textInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-              style={{ transitionDelay: "0.1s" }}
-            >
-              <h1 className={`font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-4 transition-all duration-700 delay-75 ${textInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-                Olá, eu sou{" "}
-                <span className="gradient-text text-shadow-glow">Samuel</span>
+            <Reveal>
+              <p className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-line text-sm text-ink-soft mb-6">
+                <span aria-hidden="true" className="w-2 h-2 rounded-full bg-success" />
+                Disponível para projetos
+              </p>
+
+              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-5 text-ink">
+                Olá, eu sou Samuel
               </h1>
 
-              <div className={`mb-6 transition-all duration-700 delay-150 ${textInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-                <div className="flex items-center gap-2 justify-center lg:justify-start text-lg sm:text-xl text-gray-400">
-                  <Sparkles size={18} className="text-accent" />
-                  <div className="overflow-hidden h-8 relative">
-                    <div
-                      className="flex flex-col transition-transform duration-500 ease-in-out"
-                      style={{ transform: `translateY(-${roleIndex * 32}px)` }}
-                    >
-                      {roles.map((role) => (
-                        <span key={role} className="h-8 flex items-center font-medium text-accent-400">
-                          {role}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <p className="font-mono text-sm text-accent-text mb-6">
+                ~/full-stack — react · java · go · automação
+              </p>
 
-              <p className={`text-gray-400 text-base sm:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8 transition-all duration-700 delay-200 ${textInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+              <p className="text-ink-soft text-base sm:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8">
                 Desenvolvedor focado em construir soluções eficientes e funcionais,
                 com experiência em Java, React e Go. Forte interesse em sistemas,
                 automação e projetos que combinam lógica, design e uma experiência
                 de usuário sólida.
               </p>
 
-              <div className={`flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start mb-10 transition-all duration-700 delay-300 ${textInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+              <div className="flex flex-col sm:flex-row items-center gap-3 justify-center lg:justify-start mb-10">
                 <button
                   type="button"
                   ref={hireButtonRef}
                   onClick={handleHireClick}
-                  className="group relative inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-accent to-accent-dark text-white font-semibold rounded-2xl shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.02] transition-all duration-300 cursor-pointer"
+                  className="btn-primary w-full sm:w-auto"
                 >
                   Me contrate
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={18} aria-hidden="true" />
                 </button>
                 <a
                   href="https://github.com/Samuteg"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl border border-white/10 text-gray-300 font-medium hover:bg-white/5 hover:border-white/20 transition-all duration-300"
+                  className="btn-quiet w-full sm:w-auto"
                 >
-                  <Github size={18} />
+                  <Github size={18} aria-hidden="true" />
                   Ver GitHub
                 </a>
               </div>
 
-              <div className={`flex items-center gap-3 justify-center lg:justify-start transition-all duration-700 delay-500 ${textInView ? "opacity-100" : "opacity-0"}`}>
+              <div className="flex items-center gap-2 justify-center lg:justify-start">
                 {socials.map(({ icon: Icon, href, label }) => (
                   <a
                     key={href}
@@ -141,120 +125,117 @@ const HomePage = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="w-11 h-11 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-gray-400 hover:text-accent hover:border-accent/30 hover:bg-accent/5 hover:scale-110 transition-all duration-300"
+                    className="w-11 h-11 rounded-xl flex items-center justify-center text-ink-mute border border-transparent hover:text-ink hover:border-line transition-colors duration-200"
                   >
                     <Icon size={18} />
                   </a>
                 ))}
               </div>
-            </div>
+            </Reveal>
           </div>
 
-          <div
-            ref={imageRef}
-            className={`flex-shrink-0 transition-all duration-700 delay-150 ${imageInView ? "opacity-100 scale-100" : "opacity-0 scale-75"}`}
-          >
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-accent/20 via-accent-dark/10 to-accent-light/20 rounded-full blur-2xl opacity-50 group-hover:opacity-80 transition-opacity duration-500 animate-pulse-slow" />
-
-              <div className="relative w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full p-1 bg-gradient-to-br from-accent to-accent-dark shadow-2xl shadow-accent/20">
-                <div className="w-full h-full rounded-full overflow-hidden bg-surface">
+          <Reveal variant="scale" className="flex-shrink-0">
+            <div className="relative">
+              <div className="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full p-1 bg-card2 border border-line-strong">
+                <div className="w-full h-full rounded-full overflow-hidden">
                   <img
                     src={profile}
                     alt="Samuel — Desenvolvedor Full-Stack"
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               </div>
 
-              <div
-                className="absolute -bottom-2 -right-2 px-4 py-2 rounded-xl glass-strong border border-accent/20 shadow-lg animate-float"
-              >
-                <span className="text-sm font-medium text-accent">2+ anos exp.</span>
-              </div>
+              <p className="meta absolute -bottom-2 left-1/2 -translate-x-1/2 px-3.5 py-1.5 rounded-full bg-card2 border border-line whitespace-nowrap">
+                $ exp — 2+ anos
+              </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-scrim animate-fade-in"
           onClick={() => setIsModalOpen(false)}
         >
           <div
             role="dialog"
             aria-modal="true"
             aria-label="Solicitar orçamento"
+            aria-describedby="hire-modal-hint"
+            ref={dialogRef}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg p-8 rounded-3xl bg-surface-100 border border-white/10 shadow-2xl glass-strong"
+            className="relative w-full max-w-lg p-8 rounded-[20px] bg-card2 border border-line-strong animate-scale-in"
           >
             <button
               type="button"
               ref={closeButtonRef}
               aria-label="Fechar"
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-6 right-6 p-2 text-gray-400 hover:text-white rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
+              className="absolute top-5 right-5 w-11 h-11 flex items-center justify-center text-ink-mute hover:text-ink rounded-xl transition-colors"
             >
               <X size={20} />
             </button>
 
-            <h2 className="text-2xl font-display font-bold text-white mb-2">
+            <h2 className="section-title mb-2">
               Solicitar Orçamento
             </h2>
-            <p className="text-gray-400 text-sm mb-6">
+            <p id="hire-modal-hint" className="text-ink-soft text-sm mb-6">
               Preencha os campos abaixo para iniciar uma conversa diretamente no WhatsApp.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-medium text-gray-400 mb-1">
+                <label htmlFor="hire-name" className="block text-[0.8125rem] font-medium text-ink-soft mb-1.5">
                   Seu nome
                 </label>
                 <input
+                  id="hire-name"
                   type="text"
                   required
+                  autoComplete="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Ex: Maria Silva"
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors text-sm"
+                  className="field"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-gray-400 mb-1">
+                <label htmlFor="hire-email" className="block text-[0.8125rem] font-medium text-ink-soft mb-1.5">
                   Seu e-mail
                 </label>
                 <input
+                  id="hire-email"
                   type="email"
                   required
+                  autoComplete="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="Ex: maria@email.com"
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors text-sm"
+                  className="field"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-gray-400 mb-1">
+                <label htmlFor="hire-message" className="block text-[0.8125rem] font-medium text-ink-soft mb-1.5">
                   Mensagem ou detalhes do projeto
                 </label>
                 <textarea
+                  id="hire-message"
                   required
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Descreva brevemente o que você precisa..."
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors text-sm resize-none"
+                  className="field resize-none"
                 />
               </div>
 
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-accent to-accent-dark text-white font-semibold rounded-xl shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.01] transition-all duration-300 cursor-pointer"
-              >
-                <Send size={18} />
+              <button type="submit" className="btn-primary w-full">
+                <Send size={18} aria-hidden="true" />
                 Enviar pelo WhatsApp
               </button>
             </form>

@@ -44,4 +44,35 @@ describe("HomePage budget modal", () => {
     expect(url).toContain("https://wa.me/551158491828");
     expect(url).toContain(encodeURIComponent("Maria Silva"));
   });
+
+  it("keeps keyboard focus inside the open dialog", async () => {
+    render(<HomePage />);
+    fireEvent.click(await screen.findByRole("button", { name: /me contrate/i }));
+    const dialog = await screen.findByRole("dialog", { name: /solicitar orçamento/i });
+    const focusables = Array.from(
+      dialog.querySelectorAll<HTMLElement>("button, input, textarea")
+    );
+    const last = focusables[focusables.length - 1];
+    last.focus();
+    fireEvent.keyDown(window, { key: "Tab" });
+    expect(document.activeElement).toBe(focusables[0]);
+    fireEvent.keyDown(window, { key: "Tab", shiftKey: true });
+    expect(document.activeElement).toBe(last);
+  });
+
+  it("describes the dialog with its instructions", async () => {
+    render(<HomePage />);
+    fireEvent.click(await screen.findByRole("button", { name: /me contrate/i }));
+    const dialog = await screen.findByRole("dialog", { name: /solicitar orçamento/i });
+    expect(dialog).toHaveAttribute("aria-describedby", "hire-modal-hint");
+    expect(document.getElementById("hire-modal-hint")).toHaveTextContent(/whatsapp/i);
+  });
+
+  it("gives the fields the shared focus style instead of suppressing the outline", async () => {
+    render(<HomePage />);
+    fireEvent.click(await screen.findByRole("button", { name: /me contrate/i }));
+    const input = await screen.findByLabelText("Seu nome");
+    expect(input.className).toContain("field");
+    expect(input.className).not.toContain("focus:outline-none");
+  });
 });

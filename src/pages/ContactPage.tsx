@@ -1,7 +1,8 @@
 import { Mail, MapPin, Send, Github, ExternalLink } from "lucide-react";
 import { LinkedinIcon, XIcon, InstagramIcon } from "../icons/SocialIcons";
 import PageTransition from "../components/PageTransition";
-import { useInView } from "../hooks/useInView";
+import SectionHeader from "../components/SectionHeader";
+import Reveal from "../components/Reveal";
 
 const contactInfo = [
   {
@@ -24,128 +25,97 @@ const socialLinks = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/samu-teg-b9002b385/",
     username: "/in/samu-teg",
-    color: "hover:border-blue-500/30 hover:text-blue-400",
   },
   {
     icon: Github,
     label: "GitHub",
     href: "https://github.com/Samuteg",
     username: "@Samuteg",
-    color: "hover:border-gray-400/30 hover:text-gray-200",
   },
   {
     icon: XIcon,
     label: "X / Twitter",
     href: "https://x.com/Samuteg10",
     username: "@Samuteg10",
-    color: "hover:border-sky-500/30 hover:text-sky-400",
   },
   {
     icon: InstagramIcon,
     label: "Instagram",
     href: "https://www.instagram.com/samuteg10/",
     username: "@samuteg10",
-    color: "hover:border-pink-500/30 hover:text-pink-400",
   },
 ];
 
 const ContactPage = () => {
-  const { ref: infoRef, inView: infoInView } = useInView();
-  const { ref: socialRef, inView: socialInView } = useInView();
-
   return (
     <PageTransition>
-      <section className="page-section relative">
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[200px]" />
+      <section className="page-section">
+        <div className="max-w-4xl mx-auto">
+          <SectionHeader
+            eyebrow="vamos conversar"
+            title="Contato"
+            description="Tem um projeto em mente ou quer bater um papo? Entre em contato por qualquer um dos canais abaixo."
+          />
 
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <div className="mb-16 animate-fade-up">
-            <span className="text-accent text-sm font-semibold tracking-widest uppercase mb-3 block">
-              Vamos conversar
-            </span>
-            <h1 className="page-title gradient-text mb-4">Contato</h1>
-            <p className="page-subtitle">
-              Tem um projeto em mente ou quer bater um papo? Entre em contato
-              por qualquer um dos canais abaixo.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div
-              ref={infoRef}
-              className={`space-y-4 transition-all duration-700 ${
-                infoInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              <h2 className="text-lg font-display font-bold text-white mb-6 flex items-center gap-2">
-                <Mail size={20} className="text-accent" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Reveal className="space-y-3">
+              <h3 className="section-title mb-5 flex items-center gap-2">
+                <Mail size={20} aria-hidden="true" className="text-accent-text" />
                 Informações
-              </h2>
+              </h3>
 
               {contactInfo.map((item) => (
                 <div key={item.label}>
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="group flex items-center gap-4 p-4 rounded-2xl bg-surface-100/50 border border-white/5 hover:border-accent/20 transition-all duration-300"
+                      className="surface-card flex items-center gap-4 p-4 transition-colors hover:border-line-strong"
                     >
-                      <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent group-hover:scale-110 transition-transform duration-300">
-                        <item.icon size={20} />
-                      </div>
-                      <div>
-                        <span className="text-xs text-gray-500 block">
+                      <span className="w-12 h-12 rounded-xl bg-card2 border border-line flex items-center justify-center text-ink">
+                        <item.icon size={20} aria-hidden="true" />
+                      </span>
+                      <span>
+                        <span className="meta block">
                           {item.label}
                         </span>
-                        <span className="text-sm font-medium text-white group-hover:text-accent transition-colors">
+                        <span className="text-sm font-medium text-ink break-all">
                           {item.value}
                         </span>
-                      </div>
+                      </span>
                     </a>
                   ) : (
-                    <div className="flex items-center gap-4 p-4 rounded-2xl bg-surface-100/50 border border-white/5">
-                      <div className="w-12 h-12 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
-                        <item.icon size={20} />
-                      </div>
-                      <div>
-                        <span className="text-xs text-gray-500 block">
-                          {item.label}
-                        </span>
-                        <span className="text-sm font-medium text-white">
-                          {item.value}
-                        </span>
-                      </div>
+                    <div className="flex items-center gap-4 py-4">
+                      <span className="w-12 h-12 rounded-xl bg-card2 border border-line flex items-center justify-center text-ink">
+                        <item.icon size={20} aria-hidden="true" />
+                      </span>
+                      <span>
+                        <span className="meta block">{item.label}</span>
+                        <span className="text-sm font-medium text-ink">{item.value}</span>
+                      </span>
                     </div>
                   )}
                 </div>
               ))}
 
-              <div className="pt-4">
+              <div className="pt-3">
                 <a
                   href="https://www.99freelas.com.br/user/Samuteg10"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group w-full flex items-center justify-center gap-2 px-7 py-4 bg-gradient-to-r from-accent to-accent-dark text-white font-semibold rounded-2xl shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:scale-[1.02] transition-all duration-300"
+                  className="btn-primary w-full"
                 >
-                  <Send size={18} />
+                  <Send size={18} aria-hidden="true" />
                   Solicitar orçamento
-                  <ExternalLink
-                    size={14}
-                    className="opacity-0 group-hover:opacity-100 transition-opacity"
-                  />
+                  <ExternalLink size={14} aria-hidden="true" />
                 </a>
               </div>
-            </div>
+            </Reveal>
 
-            <div
-              ref={socialRef}
-              className={`space-y-4 transition-all duration-700 delay-100 ${
-                socialInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              <h2 className="text-lg font-display font-bold text-white mb-6 flex items-center gap-2">
-                <ExternalLink size={20} className="text-accent" />
+            <Reveal className="space-y-3">
+              <h3 className="section-title mb-5 flex items-center gap-2">
+                <ExternalLink size={20} aria-hidden="true" className="text-accent-text" />
                 Redes Sociais
-              </h2>
+              </h3>
 
               {socialLinks.map((social) => (
                 <a
@@ -153,35 +123,36 @@ const ContactPage = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group flex items-center gap-4 p-4 rounded-2xl bg-surface-100/50 border border-white/5 ${social.color} transition-all duration-300`}
+                  className="surface-card flex items-center gap-4 p-4 transition-colors hover:border-line-strong"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-gray-400 group-hover:scale-110 transition-all duration-300">
-                    <social.icon size={20} />
-                  </div>
-                  <div className="flex-1">
-                    <span className="text-xs text-gray-500 block">
+                  <span className="w-12 h-12 rounded-xl bg-card2 border border-line flex items-center justify-center text-ink-soft">
+                    <social.icon size={20} aria-hidden="true" />
+                  </span>
+                  <span className="flex-1">
+                    <span className="meta block">
                       {social.label}
                     </span>
-                    <span className="text-sm font-medium text-gray-300">
+                    <span className="text-sm font-medium text-ink">
                       {social.username}
                     </span>
-                  </div>
+                  </span>
                   <ExternalLink
                     size={14}
-                    className="text-gray-600 group-hover:text-current transition-colors"
+                    aria-hidden="true"
+                    className="text-ink-mute"
                   />
                 </a>
               ))}
-            </div>
+            </Reveal>
           </div>
 
-          <div className="mt-16 text-center animate-fade-up" style={{ animationDelay: "0.5s" }}>
-            <div className="glass rounded-2xl p-8 border border-white/5">
-              <p className="text-gray-400 text-sm">
-                💡 Prefiro conversar sobre projetos via{" "}
+          <div className="mt-12 text-center">
+            <div className="surface-card p-7">
+              <p className="text-ink-soft text-sm leading-relaxed">
+                Prefiro conversar sobre projetos via{" "}
                 <a
                   href="mailto:samuneveslopes@gmail.com"
-                  className="text-accent hover:underline"
+                  className="text-accent-text underline underline-offset-4"
                 >
                   email
                 </a>{" "}
@@ -190,10 +161,11 @@ const ContactPage = () => {
                   href="https://www.linkedin.com/in/samu-teg-b9002b385/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-accent hover:underline"
+                  className="text-accent-text underline underline-offset-4"
                 >
                   LinkedIn
-                </a>. Respondo em até 24h!
+                </a>
+                . Respondo em até 24h.
               </p>
             </div>
           </div>

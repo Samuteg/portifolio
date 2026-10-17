@@ -72,52 +72,58 @@ const HomePage = () => {
 
   return (
     <PageTransition>
-      <section className="page-section flex items-center justify-center">
-        <div className="w-full max-w-6xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-20">
-          <div className="flex-1 text-center lg:text-left">
+      <section className="page-section">
+        <div className="frame border-b border-line flex flex-col min-h-[calc(100vh-4rem)]">
+          <div className="flex items-center justify-between gap-4 border-b border-line px-4 sm:px-6 py-2.5">
+            <p className="font-mono text-[0.65rem] uppercase tracking-[0.08em] text-ink-mute">
+              ~/home
+            </p>
+            <p className="inline-flex items-center gap-2 rounded-full border border-line bg-wash px-3 py-1 font-mono text-[0.6rem] uppercase tracking-[0.08em] text-ink-soft">
+              <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-success" />
+              Disponível para projetos
+            </p>
+          </div>
+
+          <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] items-center gap-10 lg:gap-14 px-4 sm:px-6 py-12 lg:py-16">
             <Reveal>
-              <p className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-line text-sm text-ink-soft mb-6">
-                <span aria-hidden="true" className="w-2 h-2 rounded-full bg-success" />
-                Disponível para projetos
-              </p>
-
-              <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight mb-5 text-ink">
-                Olá, eu sou Samuel
-              </h1>
-
-              <p className="font-mono text-sm text-accent-text mb-6">
+              <p className="font-mono text-xs text-accent-text tracking-wide mb-6">
                 ~/full-stack — react · java · go · automação
               </p>
 
-              <p className="text-ink-soft text-base sm:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8">
+              <h1 className="font-display text-[clamp(3rem,7vw,5.25rem)] font-medium leading-[1.02] tracking-[-0.02em] text-ink mb-6">
+                Olá, eu sou{" "}
+                <span className="italic block">Samuel</span>
+              </h1>
+
+              <p className="text-ink-soft text-[0.95rem] leading-relaxed max-w-lg mb-8">
                 Desenvolvedor focado em construir soluções eficientes e funcionais,
                 com experiência em Java, React e Go. Forte interesse em sistemas,
                 automação e projetos que combinam lógica, design e uma experiência
                 de usuário sólida.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center gap-3 justify-center lg:justify-start mb-10">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-9">
                 <button
                   type="button"
                   ref={hireButtonRef}
                   onClick={handleHireClick}
-                  className="btn-primary w-full sm:w-auto"
+                  className="btn-primary"
                 >
                   Me contrate
-                  <ArrowRight size={18} aria-hidden="true" />
+                  <ArrowRight size={16} aria-hidden="true" />
                 </button>
                 <a
                   href="https://github.com/Samuteg"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-quiet w-full sm:w-auto"
+                  className="btn-quiet"
                 >
-                  <Github size={18} aria-hidden="true" />
+                  <Github size={16} aria-hidden="true" />
                   Ver GitHub
                 </a>
               </div>
 
-              <div className="flex items-center gap-2 justify-center lg:justify-start">
+              <div className="flex items-center gap-2.5">
                 {socials.map(({ icon: Icon, href, label }) => (
                   <a
                     key={href}
@@ -125,33 +131,49 @@ const HomePage = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="w-11 h-11 rounded-xl flex items-center justify-center text-ink-mute border border-transparent hover:text-ink hover:border-line transition-colors duration-200"
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-ink-mute border border-line hover:text-ink hover:border-line-strong hover:-translate-y-0.5 transition-all duration-300"
                   >
-                    <Icon size={18} />
+                    <Icon size={16} />
                   </a>
                 ))}
               </div>
             </Reveal>
-          </div>
 
-          <Reveal variant="scale" className="flex-shrink-0">
-            <div className="relative">
-              <div className="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full p-1 bg-card2 border border-line-strong">
-                <div className="w-full h-full rounded-full overflow-hidden">
+            <Reveal variant="scale" className="max-w-md w-full justify-self-center lg:justify-self-end">
+              <figure className="border border-line rounded-xl overflow-hidden bg-card">
+                <div className="aspect-[4/5] overflow-hidden">
                   <img
                     src={profile}
                     alt="Samuel — Desenvolvedor Full-Stack"
                     loading="lazy"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-500 ease-out hover:scale-[1.03]"
                   />
                 </div>
-              </div>
+                <figcaption className="flex items-center justify-between border-t border-line px-4 py-2.5">
+                  <span className="meta">$ exp — 2+ anos</span>
+                  <span className="meta text-accent-text">@samuteg10</span>
+                </figcaption>
+              </figure>
+            </Reveal>
+          </div>
 
-              <p className="meta absolute -bottom-2 left-1/2 -translate-x-1/2 px-3.5 py-1.5 rounded-full bg-card2 border border-line whitespace-nowrap">
-                $ exp — 2+ anos
-              </p>
-            </div>
-          </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-3 border-t border-line">
+            {[
+              { label: "Base", value: "Brasil" },
+              { label: "Experiência", value: "2+ anos" },
+              { label: "Foco", value: "Full-stack" },
+            ].map(({ label, value }, i) => (
+              <div
+                key={label}
+                className={`flex items-baseline justify-between gap-4 px-4 sm:px-6 py-3.5 ${
+                  i > 0 ? "border-t sm:border-t-0 sm:border-l border-line" : ""
+                } ${i === 1 ? "sm:border-x border-line" : ""}`}
+              >
+                <span className="meta">{label}</span>
+                <span className="text-[0.8rem] font-medium text-ink">{value}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -167,14 +189,14 @@ const HomePage = () => {
             aria-describedby="hire-modal-hint"
             ref={dialogRef}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg p-8 rounded-[20px] bg-card2 border border-line-strong animate-scale-in"
+            className="relative w-full max-w-lg p-8 rounded-xl bg-card border border-line-strong animate-scale-in"
           >
             <button
               type="button"
               ref={closeButtonRef}
               aria-label="Fechar"
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-5 right-5 w-11 h-11 flex items-center justify-center text-ink-mute hover:text-ink rounded-xl transition-colors"
+              className="absolute top-5 right-5 w-11 h-11 flex items-center justify-center text-ink-mute hover:text-ink rounded-lg transition-colors"
             >
               <X size={20} />
             </button>
@@ -235,7 +257,7 @@ const HomePage = () => {
               </div>
 
               <button type="submit" className="btn-primary w-full">
-                <Send size={18} aria-hidden="true" />
+                <Send size={16} aria-hidden="true" />
                 Enviar pelo WhatsApp
               </button>
             </form>

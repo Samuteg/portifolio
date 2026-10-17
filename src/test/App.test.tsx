@@ -16,13 +16,14 @@ describe("App", () => {
   it("renders all sections on a single page", async () => {
     render(<App />);
     await waitFor(() => {
-      for (const id of ["home", "services", "skills", "projects", "experiences", "contact"]) {
+      for (const id of ["home", "services", "skills", "projects", "devlogs", "experiences", "contact"]) {
         expect(document.getElementById(id)).toBeInTheDocument();
       }
     });
     expect(await screen.findAllByText("Serviços")).not.toHaveLength(0);
     expect(await screen.findAllByText("Skills")).not.toHaveLength(0);
     expect(await screen.findAllByText("Projetos")).not.toHaveLength(0);
+    expect(await screen.findAllByText("Dev Logs")).not.toHaveLength(0);
     expect(await screen.findAllByText("Experiência")).not.toHaveLength(0);
     expect(await screen.findAllByText("Contato")).not.toHaveLength(0);
   });

@@ -38,44 +38,52 @@ const ServicesPage = () => {
   return (
     <PageTransition>
       <section className="page-section">
-        <div className="max-w-6xl mx-auto">
+        <div className="frame border-b border-line">
           <SectionHeader
             eyebrow="o que eu faço"
             title="Serviços"
             description="Soluções completas para transformar suas ideias em produtos digitais de alta qualidade."
           />
 
-          <ul className="border-t border-line">
+          <ul className="grid grid-cols-1 md:grid-cols-2 border-b border-line">
             {services.map((service, i) => (
-              <li key={service.title} className="border-b border-line">
-                <Reveal
-                  delay={i}
-                  className="grid gap-3 py-7 md:grid-cols-[minmax(0,15rem)_1fr] md:gap-10"
-                >
-                  <div className="flex items-center gap-3">
-                    <service.icon size={20} className="text-accent-text" aria-hidden="true" />
+              <li
+                key={service.title}
+                className={[
+                  "px-4 sm:px-6 py-7",
+                  i !== 0 && "border-t md:border-t-0",
+                  i >= 2 && "md:border-t",
+                  i % 2 === 0 && "md:border-r",
+                  "border-line",
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                <Reveal delay={i}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="w-9 h-9 rounded-md border border-line bg-card2 flex items-center justify-center text-accent-text shrink-0">
+                      <service.icon size={17} aria-hidden="true" />
+                    </span>
                     <h3 className="card-title">{service.title}</h3>
                   </div>
-                  <div>
-                    <p className="text-ink-soft text-[0.95rem] leading-relaxed mb-3">
-                      {service.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {service.tags.map((tag) => (
-                        <span key={tag} className="tag">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                  <p className="text-ink-soft text-sm leading-relaxed mb-4">
+                    {service.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {service.tags.map((tag) => (
+                      <span key={tag} className="tag">
+                        {tag}
+                      </span>
+                    ))}
                   </div>
                 </Reveal>
               </li>
             ))}
           </ul>
 
-          <Reveal className="mt-12">
-            <div className="surface-card p-8 max-w-2xl mx-auto text-center">
-              <h3 className="card-title mb-2">Tem um projeto em mente?</h3>
+          <Reveal className="px-4 sm:px-6 py-10">
+            <div className="max-w-xl mx-auto text-center">
+              <h3 className="section-title mb-2">Tem um projeto em mente?</h3>
               <p className="text-ink-soft text-sm mb-6">
                 Vamos conversar sobre como posso ajudar a transformar sua ideia
                 em realidade.

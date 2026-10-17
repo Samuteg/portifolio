@@ -10,6 +10,15 @@ export default defineConfig({
     viteCompression({ algorithm: 'gzip', threshold: 1024 }),
     visualizer({ open: false, filename: 'dist/stats.html' }),
   ],
+  server: {
+    proxy: {
+      '/blog-feed.xml': {
+        target: 'https://samuteg-dev.vercel.app',
+        changeOrigin: true,
+        rewrite: () => '/rss.xml',
+      },
+    },
+  },
   build: {
     target: 'es2020',
     rollupOptions: {

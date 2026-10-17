@@ -45,8 +45,9 @@ pnpm test -- --watch  # Vitest watch mode
 ## Conventions
 
 - TypeScript + strict mode.
-- Tailwind for styling (`tailwind.config.js`) — accent color is `#b74b4b` (muted red); surface is `#050505` (near-black). Use Tailwind classes over inline styles.
-- Font families: `Inter` (sans) and `Outfit` (display), loaded via Google Fonts in `index.html`.
+- Tailwind for styling (`tailwind.config.js`) — accent color is `#FCA311` (amber); background is `#0a0a0a` (warm near-black); hairline borders are `rgba(255,255,255,0.07)`. Use Tailwind classes over inline styles.
+- Font families: `Playfair Display` (display/serif headings), `Outfit` (sans), `DM Mono` (microtext/pills), loaded via Google Fonts in `index.html`.
+- Design language: sections sit inside a centered `.frame` (max-w-6xl with `border-x` hairlines); section headers are rows with `border-b`; grids use hairline dividers (no gaps); microcopy is mono uppercase; pills use the `.tag` class.
 - No comments in code unless absolutely necessary.
 - `MemoryRouter` wrapping is required in tests that render `<App>` or use routing (see `src/test/App.test.tsx`).
 

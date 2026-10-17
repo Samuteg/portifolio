@@ -4,7 +4,11 @@
     { "source": "/services", "destination": "/#services", "permanent": true },
     { "source": "/skills", "destination": "/#skills", "permanent": true },
     { "source": "/projects", "destination": "/#projects", "permanent": true },
+    { "source": "/devlogs", "destination": "/#devlogs", "permanent": true },
     { "source": "/experiences", "destination": "/#experiences", "permanent": true },
     { "source": "/contact", "destination": "/#contact", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/blog-feed.xml", "destination": "https://samuteg-dev.vercel.app/rss.xml" }
   ]
 }

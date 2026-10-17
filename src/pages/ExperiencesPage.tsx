@@ -1,8 +1,6 @@
 import {
-  Briefcase,
   Calendar,
   MapPin,
-  BookOpen,
   ArrowUpRight,
 } from "lucide-react";
 import PageTransition from "../components/PageTransition";
@@ -52,56 +50,49 @@ const education = [
   },
 ];
 
-const TimelineItem = ({ children, index = 0 }: { children: React.ReactNode; index?: number }) => (
-  <Reveal variant="left" delay={index} className="relative pl-14 mb-8">
-    {children}
-  </Reveal>
+const SubHeader = ({ title }: { title: string }) => (
+  <div className="border-b border-line px-4 sm:px-6 py-3">
+    <h3 className="section-title">{title}</h3>
+  </div>
 );
 
-const CertCard = ({ pdf, image, alt, title, tech, org, index }: {
+const CertCard = ({ pdf, image, alt, title, tech, org }: {
   pdf: string;
   image: string;
   alt: string;
   title: string;
   tech: string;
   org: string;
-  index: number;
 }) => (
-  <Reveal delay={index}>
-    <div className="surface-card p-6">
-      <div className="grid gap-6 md:grid-cols-2 items-center">
-          <div className="overflow-hidden rounded-2xl border border-line bg-card2">
-            <img
-              src={image}
-              alt={alt}
-              loading="lazy"
-              className="h-full w-full object-cover"
-            />
-          </div>
-
-        <div className="flex flex-col justify-center gap-4">
-          <div>
-            <p className="eyebrow mb-2">certificação</p>
-            <h4 className="card-title">
-              {title}
-            </h4>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <span className="tag">{tech}</span>
-            <span className="tag">{org}</span>
-          </div>
-          <a
-            href={pdf}
-            target="_blank"
-            rel="noreferrer"
-            className="btn-quiet self-start"
-          >
-            Ver certificado
-          </a>
-        </div>
+  <div className="flex gap-4 p-4 sm:p-5">
+    <img
+      src={image}
+      alt={alt}
+      loading="lazy"
+      className="w-20 h-24 object-cover rounded-md border border-line shrink-0 bg-card2"
+    />
+    <div className="flex flex-col min-w-0">
+      <p className="eyebrow mb-1.5">certificação</p>
+      <h4 className="card-title mb-2.5">{title}</h4>
+      <div className="flex flex-wrap gap-1.5 mb-3">
+        <span className="tag">{tech}</span>
+        <span className="tag">{org}</span>
       </div>
+      <a
+        href={pdf}
+        target="_blank"
+        rel="noreferrer"
+        className="group mt-auto inline-flex items-center gap-1.5 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-ink-mute hover:text-accent-text transition-colors"
+      >
+        Ver certificado
+        <ArrowUpRight
+          size={12}
+          aria-hidden="true"
+          className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        />
+      </a>
     </div>
-  </Reveal>
+  </div>
 );
 
 const certificates = [
@@ -164,137 +155,114 @@ const certificates = [
 ];
 
 const ExperiencesPage = () => {
+  const oddCount = certificates.length % 2 === 1;
+  const lastIndex = certificates.length - 1;
+
   return (
     <PageTransition>
       <section className="page-section">
-        <div className="max-w-4xl mx-auto">
+        <div className="frame border-b border-line">
           <SectionHeader
             eyebrow="minha trajetória"
             title="Experiência"
             description="Minha jornada profissional e acadêmica no desenvolvimento de software."
           />
 
-          <div className="space-y-16">
-            <div>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-card2 border border-line flex items-center justify-center text-ink">
-                  <Briefcase size={20} aria-hidden="true" />
+          <SubHeader title="Experiência Profissional" />
+
+          <Reveal variant="fade" className="px-4 sm:px-6 py-8">
+            <div className="relative ml-1 border-l border-dashed border-line-strong pl-7">
+              {experiences.map((exp) => (
+                <div key={exp.title} className="relative">
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-0 -translate-x-1/2 top-1.5 w-2.5 h-2.5 rounded-full bg-accent ring-4 ring-canvas"
+                  />
+
+                  {exp.current && (
+                    <span className="inline-flex items-center gap-2 rounded-full border border-line bg-wash px-2.5 py-1 font-mono text-[0.6rem] uppercase tracking-[0.08em] text-ink-soft mb-3">
+                      <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-success" />
+                      atual
+                    </span>
+                  )}
+
+                  <h4 className="section-title mb-1">{exp.title}</h4>
+                  <p className="text-accent-text font-medium text-sm mb-2.5">
+                    {exp.company}
+                  </p>
+
+                  <p className="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-ink-mute mb-4">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Calendar size={11} aria-hidden="true" />
+                      {exp.period}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <MapPin size={11} aria-hidden="true" />
+                      {exp.location}
+                    </span>
+                  </p>
+
+                  <p className="text-ink-soft text-sm leading-relaxed mb-4 max-w-2xl">
+                    {exp.description}
+                  </p>
+
+                  {exp.highlights && (
+                    <ul className="space-y-1.5 max-w-2xl">
+                      {exp.highlights.map((h) => (
+                        <li
+                          key={h}
+                          className="flex items-start gap-2 text-sm text-ink-soft"
+                        >
+                          <ArrowUpRight
+                            size={14}
+                            aria-hidden="true"
+                            className="text-accent-text mt-0.5 flex-shrink-0"
+                          />
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
-                <h3 className="section-title">
-                  Experiência Profissional
-                </h3>
-              </div>
-
-              <Reveal variant="fade" className="relative">
-                <div aria-hidden="true" className="absolute left-5 top-0 bottom-0 w-px bg-line-strong" />
-
-                {experiences.map((exp, i) => (
-                  <TimelineItem key={exp.title} index={i}>
-                    <span
-                      aria-hidden="true"
-                      className="absolute left-3 top-7 w-3.5 h-3.5 rounded-full bg-accent ring-4 ring-canvas"
-                    />
-
-                    <div className="surface-card p-6">
-                      {exp.current && (
-                        <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-line font-mono text-xs text-ink-soft mb-4">
-                          <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-success" />
-                          atual
-                        </span>
-                      )}
-
-                      <h4 className="card-title">
-                        {exp.title}
-                      </h4>
-                      <p className="text-accent-text font-medium text-sm mb-3">
-                        {exp.company}
-                      </p>
-
-                      <p className="flex flex-wrap items-center gap-4 font-mono text-xs text-ink-mute mb-4">
-                        <span className="inline-flex items-center gap-1.5">
-                          <Calendar size={12} aria-hidden="true" />
-                          {exp.period}
-                        </span>
-                        <span className="inline-flex items-center gap-1.5">
-                          <MapPin size={12} aria-hidden="true" />
-                          {exp.location}
-                        </span>
-                      </p>
-
-                      <p className="text-ink-soft text-sm leading-relaxed mb-4">
-                        {exp.description}
-                      </p>
-
-                      {exp.highlights && (
-                        <ul className="space-y-2">
-                          {exp.highlights.map((h) => (
-                            <li
-                              key={h}
-                              className="flex items-start gap-2 text-sm text-ink-soft"
-                            >
-                              <ArrowUpRight
-                                size={14}
-                                aria-hidden="true"
-                                className="text-accent-text mt-0.5 flex-shrink-0"
-                              />
-                              {h}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </TimelineItem>
-                ))}
-              </Reveal>
-            </div>
-
-            <div>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-card2 border border-line flex items-center justify-center text-ink">
-                  <BookOpen aria-hidden="true" />
-                </div>
-                <h3 className="section-title">
-                  Formação
-                </h3>
-              </div>
-
-              {education.map((edu) => (
-                <Reveal key={edu.title}>
-                  <div className="surface-card p-6">
-                    <h4 className="card-title">
-                      {edu.title}
-                    </h4>
-                    <p className="text-accent-text font-medium text-sm mb-2">
-                      {edu.institution}
-                    </p>
-                    <p className="flex items-center gap-1.5 font-mono text-xs text-ink-mute mb-4">
-                      <Calendar size={12} aria-hidden="true" />
-                      {edu.period}
-                    </p>
-                    <p className="text-ink-soft text-sm leading-relaxed">
-                      {edu.description}
-                    </p>
-                  </div>
-                </Reveal>
               ))}
             </div>
+          </Reveal>
 
-            <div>
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 rounded-xl bg-card2 border border-line flex items-center justify-center text-ink">
-                  <BookOpen aria-hidden="true" />
-                </div>
-                <h3 className="section-title">
-                  Certificados
-                </h3>
-              </div>
+          <SubHeader title="Formação" />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {certificates.map((cert, i) => (
-                  <CertCard key={cert.title} {...cert} index={i} />
-                ))}
+          <Reveal className="px-4 sm:px-6 py-7">
+            {education.map((edu) => (
+              <div key={edu.title}>
+                <h4 className="section-title mb-1">{edu.title}</h4>
+                <p className="text-accent-text font-medium text-sm mb-2.5">
+                  {edu.institution}
+                </p>
+                <p className="flex items-center gap-1.5 font-mono text-[0.65rem] uppercase tracking-[0.08em] text-ink-mute mb-4">
+                  <Calendar size={11} aria-hidden="true" />
+                  {edu.period}
+                </p>
+                <p className="text-ink-soft text-sm leading-relaxed max-w-2xl">
+                  {edu.description}
+                </p>
               </div>
-            </div>
+            ))}
+          </Reveal>
+
+          <SubHeader title="Certificados" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 border-b border-line">
+            {certificates.map((cert, i) => (
+              <div
+                key={cert.title}
+                className={`border-line ${
+                  i % 2 === 0 && !(oddCount && i === lastIndex) ? "md:border-r" : ""
+                } ${i !== 0 ? "border-t md:border-t-0" : ""} ${i >= 2 ? "md:border-t" : ""}`}
+              >
+                <Reveal delay={Math.min(i, 3)} className="h-full">
+                  <CertCard {...cert} />
+                </Reveal>
+              </div>
+            ))}
           </div>
         </div>
       </section>

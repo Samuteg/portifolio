@@ -13,6 +13,15 @@ import {
   GitBranch,
   Box,
   Wrench,
+  Atom,
+  Zap,
+  Coffee,
+  Braces,
+  Workflow,
+  Palette,
+  Bot,
+  Rocket,
+  type LucideIcon,
 } from "lucide-react";
 
 type SkillData = {
@@ -27,9 +36,53 @@ type StackCardProps = {
   skills: SkillData[];
 };
 
+const marqueeItems: { label: string; icon: LucideIcon }[] = [
+  { label: "React", icon: Atom },
+  { label: "Next.js", icon: Globe },
+  { label: "Node.js", icon: Server },
+  { label: "Fastify", icon: Zap },
+  { label: "Java", icon: Coffee },
+  { label: "Golang", icon: Cpu },
+  { label: "REST APIs", icon: Braces },
+  { label: "MongoDB", icon: Database },
+  { label: "SQLite", icon: Database },
+  { label: "Docker", icon: Box },
+  { label: "Linux", icon: Terminal },
+  { label: "Git & GitHub", icon: GitBranch },
+  { label: "CI / CD", icon: Workflow },
+  { label: "HTML5", icon: FileCode },
+  { label: "CSS3 / Tailwind", icon: Palette },
+  { label: "JavaScript", icon: Code },
+  { label: "Automação", icon: Bot },
+  { label: "Deployment", icon: Rocket },
+];
+
+const MarqueeGroup = ({ hidden = false }: { hidden?: boolean }) => (
+  <div className="marquee-group py-3" aria-hidden={hidden || undefined}>
+    {marqueeItems.map(({ label, icon: Icon }) => (
+      <span
+        key={label}
+        className="flex items-center gap-2 whitespace-nowrap font-mono text-[0.7rem] uppercase tracking-[0.06em] text-ink-mute"
+      >
+        <Icon size={13} aria-hidden="true" className="shrink-0" />
+        {label}
+      </span>
+    ))}
+  </div>
+);
+
+const Marquee = () => (
+  <div className="marquee border-b border-line" aria-label="Tecnologias que uso">
+    <MarqueeGroup />
+    <MarqueeGroup hidden />
+  </div>
+);
+
+const levelWidth = ["w-0", "w-1/5", "w-2/5", "w-3/5", "w-4/5", "w-full"];
+
 const SkillItem = ({ icon, label, level }: SkillData) => (
-  <li className="flex items-center gap-3 px-3.5 py-3 rounded-xl border border-line min-w-0">
-    <span aria-hidden="true" className="text-ink-soft flex-shrink-0 block w-4 h-4">
+  <li className="flex items-center gap-3 py-2.5 border-b border-line last:border-b-0 min-w-0">
+    <span aria-hidden="true" className="text-ink-mute flex-shrink-0 block w-4 h-4">
       {icon}
     </span>
     <span className="text-ink text-sm font-medium truncate min-w-0 flex-1">
@@ -39,17 +92,14 @@ const SkillItem = ({ icon, label, level }: SkillData) => (
       <span
         role="img"
         aria-label={`Nível ${level} de 5`}
-        className="flex gap-1 flex-shrink-0"
+        className="block w-16 h-0.5 rounded-full bg-line flex-shrink-0 overflow-hidden"
       >
-        {[1, 2, 3, 4, 5].map((dot) => (
-          <span
-            key={dot}
-            aria-hidden="true"
-            className={`w-1.5 h-1.5 rounded-full ${
-              dot <= level ? "bg-accent-text" : "bg-line-strong"
-            }`}
-          />
-        ))}
+        <span
+          aria-hidden="true"
+          className={`block h-full rounded-full bg-accent-text transition-[width] duration-700 ${
+            levelWidth[level] ?? "w-0"
+          }`}
+        />
       </span>
     )}
   </li>
@@ -57,20 +107,17 @@ const SkillItem = ({ icon, label, level }: SkillData) => (
 
 const StackCard = ({ title, icon, skills }: StackCardProps) => (
   <Reveal className="h-full">
-    <div className="surface-card p-7 h-full">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 rounded-xl bg-card2 border border-line flex items-center justify-center text-ink">
-          {icon}
-        </div>
-        <h3 className="card-title">{title}</h3>
-      </div>
-
-      <ul className="grid grid-cols-1 gap-2">
-        {skills.map((skill) => (
-          <SkillItem key={skill.label} {...skill} />
-        ))}
-      </ul>
+    <div className="flex items-center gap-2.5 border-b border-line px-4 sm:px-6 py-3">
+      <span className="text-accent-text shrink-0">{icon}</span>
+      <h3 className="font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink">
+        {title}
+      </h3>
     </div>
+    <ul className="px-4 sm:px-6 py-2">
+      {skills.map((skill) => (
+        <SkillItem key={skill.label} {...skill} />
+      ))}
+    </ul>
   </Reveal>
 );
 
@@ -78,17 +125,19 @@ export default function SkillsPage() {
   return (
     <PageTransition>
       <section className="page-section">
-        <div className="max-w-6xl mx-auto">
+        <div className="frame border-b border-line">
           <SectionHeader
             eyebrow="minhas competências"
             title="Skills"
             description="Tecnologias e ferramentas que utilizo para construir aplicações modernas, escaláveis e de alta performance."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <Marquee />
+
+          <div className="grid grid-cols-1 md:grid-cols-3 border-b border-line">
             <StackCard
               title="Frontend"
-              icon={<Code className="w-5 h-5" aria-hidden="true" />}
+              icon={<Code className="w-4 h-4" aria-hidden="true" />}
               skills={[
                 { icon: <Globe className="w-4 h-4" />, label: "HTML5", level: 5 },
                 { icon: <FileCode className="w-4 h-4" />, label: "CSS3 / Tailwind", level: 5 },
@@ -101,7 +150,7 @@ export default function SkillsPage() {
 
             <StackCard
               title="Backend"
-              icon={<Server className="w-5 h-5" aria-hidden="true" />}
+              icon={<Server className="w-4 h-4" aria-hidden="true" />}
               skills={[
                 { icon: <Server className="w-4 h-4" />, label: "Node.js", level: 4 },
                 { icon: <Server className="w-4 h-4" />, label: "Fastify", level: 4 },
@@ -114,7 +163,7 @@ export default function SkillsPage() {
 
             <StackCard
               title="DevOps & Tools"
-              icon={<Wrench className="w-5 h-5" aria-hidden="true" />}
+              icon={<Wrench className="w-4 h-4" aria-hidden="true" />}
               skills={[
                 { icon: <Box className="w-4 h-4" />, label: "Docker", level: 4 },
                 { icon: <Terminal className="w-4 h-4" />, label: "Linux", level: 5 },

@@ -31,13 +31,16 @@ describe("heading hierarchy", () => {
         screen.getByRole("heading", { level: 2, name: "Projetos" })
       ).toBeInTheDocument();
       expect(
+        screen.getByRole("heading", { level: 2, name: "Dev Logs" })
+      ).toBeInTheDocument();
+      expect(
         screen.getByRole("heading", { level: 2, name: "Experiência" })
       ).toBeInTheDocument();
       expect(
         screen.getByRole("heading", { level: 2, name: "Contato" })
       ).toBeInTheDocument();
     }, { timeout: 5000 });
-    for (const title of ["Serviços", "Skills", "Projetos", "Experiência", "Contato"]) {
+    for (const title of ["Serviços", "Skills", "Projetos", "Dev Logs", "Experiência", "Contato"]) {
       expect(screen.getByRole("heading", { level: 2, name: title })).toBeInTheDocument();
     }
   });
@@ -121,6 +124,9 @@ describe("heading hierarchy", () => {
       ).toBeInTheDocument();
       expect(
         screen.getByRole("heading", { level: 2, name: "Projetos" })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { level: 2, name: "Dev Logs" })
       ).toBeInTheDocument();
       expect(
         screen.getByRole("heading", { level: 2, name: "Experiência" })

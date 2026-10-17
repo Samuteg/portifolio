@@ -6,12 +6,13 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
 const SkillsPage = lazy(() => import("./pages/SkillsPage"));
 const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
+const DevLogsPage = lazy(() => import("./pages/DevLogsPage"));
 const ExperiencesPage = lazy(() => import("./pages/ExperiencesPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 
 const PageLoader = () => (
-  <div className="page-section flex items-center justify-center">
-    <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+  <div className="page-section min-h-screen flex items-center justify-center">
+    <div className="w-7 h-7 border-2 border-accent border-t-transparent rounded-full animate-spin" />
   </div>
 );
 
@@ -20,6 +21,7 @@ const sections = [
   { id: "services", label: "Serviços", Component: ServicesPage },
   { id: "skills", label: "Skills", Component: SkillsPage },
   { id: "projects", label: "Projetos", Component: ProjectsPage },
+  { id: "devlogs", label: "Dev Logs", Component: DevLogsPage },
   { id: "experiences", label: "Experiência", Component: ExperiencesPage },
   { id: "contact", label: "Contato", Component: ContactPage },
 ];

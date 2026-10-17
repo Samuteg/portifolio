@@ -41,77 +41,115 @@ const projects = [
   },
 ];
 
-const ProjectCard = ({ project, index }: { project: (typeof projects)[number]; index: number }) => (
-  <Reveal delay={index}>
-    <article className="surface-card overflow-hidden">
-      <div
-        className={`grid grid-cols-1 ${
-          project.featured ? "md:grid-cols-[420px_1fr]" : "md:grid-cols-[320px_1fr]"
-        }`}
+const ProjectLinks = ({ liveUrl, codeUrl }: { liveUrl?: string; codeUrl?: string }) => (
+  <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+    {liveUrl && (
+      <a
+        href={liveUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group inline-flex items-center gap-1.5 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-accent-text"
       >
-        <div className="relative bg-card2 min-h-56 md:min-h-full">
-          <img
-            src={project.image}
-            alt={`Preview do projeto ${project.title}`}
-            loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+        Ver projeto
+        <ExternalLink
+          size={13}
+          aria-hidden="true"
+          className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+        />
+      </a>
+    )}
+    {codeUrl && (
+      <a
+        href={codeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group inline-flex items-center gap-1.5 font-mono text-[0.7rem] uppercase tracking-[0.08em] text-ink-mute hover:text-ink transition-colors"
+      >
+        <Github size={13} aria-hidden="true" />
+        Código
+      </a>
+    )}
+  </div>
+);
+
+const FeaturedCard = ({ project, index }: { project: (typeof projects)[number]; index: number }) => (
+  <Reveal delay={index}>
+    <article className="grid grid-cols-1 md:grid-cols-[1.05fr_1fr]">
+      <div className="relative overflow-hidden border-b md:border-b-0 md:border-r border-line bg-card2 min-h-56 md:min-h-full group">
+        <img
+          src={project.image}
+          alt={`Preview do projeto ${project.title}`}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+        />
+      </div>
+
+      <div className="flex flex-col justify-center p-6 sm:p-8">
+        <div className="flex flex-wrap items-center gap-3 mb-2.5">
+          <h3 className="section-title">{project.title}</h3>
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent-wash border border-line font-mono text-[0.6rem] uppercase tracking-[0.06em] text-accent-text">
+            <Star size={10} fill="currentColor" aria-hidden="true" />
+            destaque
+          </span>
         </div>
 
-        <div className="flex flex-col justify-center p-7">
-          <div className="flex items-center gap-3 mb-2">
-            <h3 className="card-title">{project.title}</h3>
-            {project.featured && (
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-accent-wash border border-line text-accent-text font-mono text-[0.75rem]">
-                <Star size={11} fill="currentColor" aria-hidden="true" />
-                destaque
-              </span>
-            )}
-          </div>
+        <p className="text-ink-soft text-sm leading-relaxed mb-4">
+          {project.description}
+        </p>
 
-          <p className="text-ink-soft text-[0.95rem] leading-relaxed mb-4">
-            {project.description}
-          </p>
-
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.tags.map((tag) => (
-              <span key={tag} className="tag">
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <p className="flex items-center gap-4 meta mb-5">
-            <span className="inline-flex items-center gap-1.5">
-              <Calendar size={12} aria-hidden="true" />
-              {project.date}
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.tags.map((tag) => (
+            <span key={tag} className="tag">
+              {tag}
             </span>
-          </p>
+          ))}
+        </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-              >
-                <ExternalLink size={18} aria-hidden="true" />
-                Ver projeto
-              </a>
-            )}
-            {project.codeUrl && (
-              <a
-                href={project.codeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-quiet"
-              >
-                <Github size={18} aria-hidden="true" />
-                Código
-              </a>
-            )}
-          </div>
+        <p className="flex items-center gap-4 meta mb-5">
+          <span className="inline-flex items-center gap-1.5">
+            <Calendar size={11} aria-hidden="true" />
+            {project.date}
+          </span>
+        </p>
+
+        <ProjectLinks liveUrl={project.liveUrl} codeUrl={project.codeUrl} />
+      </div>
+    </article>
+  </Reveal>
+);
+
+const SecondaryCard = ({ project, index }: { project: (typeof projects)[number]; index: number }) => (
+  <Reveal delay={index} className="h-full">
+    <article className="group flex h-full flex-col">
+      <div className="relative aspect-video overflow-hidden border-b border-line bg-card2">
+        <img
+          src={project.image}
+          alt={`Preview do projeto ${project.title}`}
+          loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+        />
+      </div>
+
+      <div className="flex flex-1 flex-col p-5">
+        <div className="flex items-baseline justify-between gap-3 mb-2">
+          <h3 className="card-title">{project.title}</h3>
+          <span className="meta">{project.date}</span>
+        </div>
+
+        <p className="text-ink-soft text-[0.85rem] leading-relaxed mb-3">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.tags.map((tag) => (
+            <span key={tag} className="tag">
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-auto">
+          <ProjectLinks liveUrl={project.liveUrl} codeUrl={project.codeUrl} />
         </div>
       </div>
     </article>
@@ -119,19 +157,39 @@ const ProjectCard = ({ project, index }: { project: (typeof projects)[number]; i
 );
 
 const ProjectsPage = () => {
+  const featured = projects.filter((p) => p.featured);
+  const rest = projects.filter((p) => !p.featured);
+
   return (
     <PageTransition>
       <section className="page-section">
-        <div className="max-w-6xl mx-auto">
+        <div className="frame border-b border-line">
           <SectionHeader
             eyebrow="meu trabalho"
             title="Projetos"
             description="Uma seleção dos projetos que mais representam minhas habilidades e paixão por desenvolver soluções impactantes."
           />
 
-          <div className="flex flex-col gap-6">
-            {projects.map((project, i) => (
-              <ProjectCard key={project.title} project={project} index={i} />
+          {featured.map((project, i) => (
+            <div key={project.title} className="border-b border-line">
+              <FeaturedCard project={project} index={i} />
+            </div>
+          ))}
+
+          <div className="border-b border-line px-4 sm:px-6 py-3.5">
+            <h3 className="section-title">Outros projetos</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 border-b border-line">
+            {rest.map((project, i) => (
+              <div
+                key={project.title}
+                className={`border-line ${i % 2 === 0 ? "md:border-r" : ""} ${
+                  i > 0 ? "border-t md:border-t-0" : ""
+                } ${i >= 2 ? "md:border-t" : ""}`}
+              >
+                <SecondaryCard project={project} index={i} />
+              </div>
             ))}
           </div>
         </div>

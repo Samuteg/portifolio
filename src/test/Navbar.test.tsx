@@ -7,6 +7,7 @@ const expectedLinks = [
   ["Serviços", "#services"],
   ["Skills", "#skills"],
   ["Projetos", "#projects"],
+  ["Dev Logs", "#devlogs"],
   ["Experiência", "#experiences"],
   ["Contato", "#contact"],
 ] as const;

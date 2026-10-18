@@ -258,6 +258,75 @@ a {
   animation: scaleIn 0.35s ease-out both;
 }
 
+.blog-pre {
+  background: #121212;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-family: 'DM Mono', ui-monospace, monospace;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: #e1e4e8;
+  -webkit-overflow-scrolling: touch;
+}
+
+.blog-pre code {
+  background: transparent;
+  padding: 0;
+  border: 0;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #888480;
+  font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-literal,
+.hljs-type,
+.hljs-name {
+  color: #ff9e64;
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta .hljs-string {
+  color: #9ece6a;
+}
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attr,
+.hljs-selector-attr {
+  color: #fca311;
+}
+.hljs-title,
+.hljs-section,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #7dcfff;
+}
+.hljs-variable,
+.hljs-template-variable,
+.hljs-property,
+.hljs-params {
+  color: #e0dcd8;
+}
+.hljs-doctag,
+.hljs-strong {
+  font-weight: 600;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-deletion {
+  color: #e06c60;
+}
+
 .page-section {
   position: relative;
 }

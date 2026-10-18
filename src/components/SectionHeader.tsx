@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { useInView } from "../hooks/useInView";
 
 type SectionHeaderProps = {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   description: string;
   action?: ReactNode;
@@ -20,7 +20,7 @@ const SectionHeader = ({ eyebrow, title, description, action }: SectionHeaderPro
     >
       <header className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-line px-4 sm:px-6 py-3.5">
         <h2 className="section-title leading-none">{title}</h2>
-        {action ?? <p className="eyebrow">~/ {eyebrow}</p>}
+        {action ?? (eyebrow ? <p className="eyebrow">~/ {eyebrow}</p> : null)}
       </header>
       <div className="border-b border-line px-4 sm:px-6 py-3.5">
         <p className="page-subtitle">{description}</p>

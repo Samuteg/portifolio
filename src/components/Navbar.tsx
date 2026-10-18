@@ -11,7 +11,11 @@ const navLinks = [
   { id: "contact", label: "Contato" },
 ];
 
-const Navbar = () => {
+type NavbarProps = {
+  pathPrefix?: string;
+};
+
+const Navbar = ({ pathPrefix = "" }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -54,7 +58,7 @@ const Navbar = () => {
       <div className="frame !border-x-0 px-4 sm:px-6 py-3">
         <div className="flex justify-between items-center gap-4">
           <a
-            href="#home"
+            href={pathPrefix ? "/" : "#home"}
             onClick={() => handleNavClick("home")}
             className="flex items-center gap-2.5 min-h-[44px]"
             aria-label="S Samuel ~/dev — início"
@@ -77,7 +81,7 @@ const Navbar = () => {
             {navLinks.map(({ id, label }) => (
               <a
                 key={id}
-                href={`#${id}`}
+                href={`${pathPrefix}#${id}`}
                 onClick={() => handleNavClick(id)}
                 aria-current={isActive(id) ? "page" : undefined}
                 className={`relative font-mono text-[0.65rem] uppercase tracking-[0.08em] min-h-[44px] flex items-center transition-colors duration-200 ${
@@ -92,7 +96,7 @@ const Navbar = () => {
           </nav>
 
           <a
-            href="#contact"
+            href={`${pathPrefix}#contact`}
             onClick={() => handleNavClick("contact")}
             className="hidden md:inline-flex items-center gap-1.5 min-h-[36px] px-4 rounded-full border border-line-strong font-mono text-[0.65rem] uppercase tracking-[0.08em] text-ink hover:border-accent-text hover:text-accent-text transition-colors duration-200"
           >
@@ -122,7 +126,7 @@ const Navbar = () => {
           {navLinks.map(({ id, label }) => (
             <a
               key={id}
-              href={`#${id}`}
+              href={`${pathPrefix}#${id}`}
               onClick={() => handleNavClick(id)}
               aria-current={isActive(id) ? "page" : undefined}
               className={`flex items-center justify-between min-h-[44px] font-mono text-[0.7rem] uppercase tracking-[0.08em] transition-colors duration-200 border-b border-line last:border-b-0 ${

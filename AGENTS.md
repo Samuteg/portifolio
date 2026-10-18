@@ -40,7 +40,15 @@ pnpm test -- --watch  # Vitest watch mode
 
 - `public/robots.txt` — allows all crawlers, references sitemap.
 - `public/sitemap.xml` — lists all 6 routes. If a route is added/removed, update the sitemap too.
-- `public/favicon.svg` — custom "S" monogram favicon.
+- `public/favicon.svg` — amber "S" monogram favicon (matches the navbar logo mark).
+
+## Blog (dev logs)
+
+- Posts are markdown files in `content/logs/*.md` with frontmatter: `title` (quoted), `date` (YYYY-MM-DD), `description`, optional `image` (`/log-images/<slug>.webp`) + `imageAlt` (quoted), `tags: [a, b]`. Slug = filename. Hero images live in `public/log-images/`.
+- Loader: `src/content/logs.ts` — eager raw glob (`import.meta.glob` with `?raw`), frontmatter parser, sorted by date desc.
+- Post pages: `src/pages/LogPostPage.tsx` — standalone page at `/log/<slug>` (no router: `App.tsx` branches on `window.location.pathname`; Vercel rewrite `/log/:slug` → `/index.html`). Syntax highlight via `rehype-highlight` — token palette lives in `index.css` (`.blog-pre` + `.hljs-*`, code panels always dark).
+- To publish a post: create `content/logs/<slug>.md`. No code changes needed.
+- `scripts/migrate-logs.mjs` — one-off script that migrated the 22 existing posts from the old Astro blog (kept for reference).
 
 ## Conventions
 

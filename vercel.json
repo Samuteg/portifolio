@@ -9,6 +9,6 @@
     { "source": "/contact", "destination": "/#contact", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/blog-feed.xml", "destination": "https://samuteg-dev.vercel.app/rss.xml" }
+    { "source": "/log/:slug", "destination": "/index.html" }
   ]
 }

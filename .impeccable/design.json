@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-29T00:00:00Z",
+  "title": "Design System: Samuel — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "canvas": { "role": "neutral-bg", "displayName": "Warm Near-Black", "canonical": "#0a0a0a", "tonalRamp": ["#0a0a0a", "#1a1a1a", "#2a2a2a", "#3a3a3a", "#4a4a4a", "#6a6a6a", "#9a9a9a", "#cacaca"] },
+      "surface-1": { "role": "neutral-bg", "displayName": "Panel", "canonical": "#121212", "tonalRamp": ["#121212", "#222222", "#333333", "#444444", "#555555", "#757575", "#a5a5a5", "#d5d5d5"] },
+      "surface-2": { "role": "neutral-bg", "displayName": "Panel Raised", "canonical": "#181818" },
+      "text-1": { "role": "neutral-text", "displayName": "Cream Ink", "canonical": "#f0ece8" },
+      "text-2": { "role": "neutral-text", "displayName": "Soft Ink", "canonical": "#bcb8b4" },
+      "text-3": { "role": "neutral-text", "displayName": "Muted Ink", "canonical": "#888480" },
+      "line": { "role": "neutral-border", "displayName": "Hairline", "canonical": "rgba(255, 255, 255, 0.07)" },
+      "line-strong": { "role": "neutral-border", "displayName": "Hairline Strong", "canonical": "rgba(255, 255, 255, 0.14)" },
+      "signal-amber": { "role": "primary", "displayName": "Signal Amber", "canonical": "#fca311", "tonalRamp": ["#b06f05", "#c77d07", "#df9109", "#fca311", "#ffb43c", "#ffc66e", "#ffd89d", "#ffe9cd"] },
+      "amber-hover": { "role": "primary", "displayName": "Signal Amber Hover", "canonical": "#ffb43c" },
+      "amber-active": { "role": "primary", "displayName": "Signal Amber Active", "canonical": "#e08f0b" },
+      "amber-wash": { "role": "primary", "displayName": "Signal Amber Wash", "canonical": "rgba(252, 163, 17, 0.09)" },
+      "success": { "role": "status", "displayName": "Success", "canonical": "#6fce8f" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero name only; set in italic on its own line." },
+      "headline": { "displayName": "Headline", "purpose": "Page titles such as Serviços and Experiência." },
+      "title": { "displayName": "Title", "purpose": "Section headings inside a band." },
+      "card-title": { "displayName": "Card Title", "purpose": "Names of cards, services, and certificates — sans so the serif stays structural." },
+      "body": { "displayName": "Body", "purpose": "Descriptions and prose, capped at 42rem (~65ch)." },
+      "label": { "displayName": "Label", "purpose": "Metadata, routes, dates, tags, counts, nav labels — DM Mono uppercase." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "fade-up", "value": "fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both", "purpose": "Section entrance reveal: rises 16px from opacity 0." },
+      { "name": "fade-in", "value": "fadeIn 0.4s ease-out both", "purpose": "Modal backdrop entrance." },
+      { "name": "scale-in", "value": "scaleIn 0.35s ease-out both", "purpose": "Modal panel and figure scale entrance: scales 0.97→1." },
+      { "name": "marquee-scroll", "value": "marquee-scroll 42s linear infinite", "purpose": "Horizontal scrolling ticker of tech tags on Home." },
+      { "name": "button-transition", "value": "background-color 0.2s ease, transform 0.2s ease", "purpose": "Primary and quiet button state transitions." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single filled button in the system. Amber fill with canvas text; used for the primary CTA only.",
+      "html": "<button class=\"ds-btn-primary\">Me contrate<svg width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M4.828 4.828a.75.75 0 0 1 1.061 0L10 6.94V2.25a.75.75 0 0 1 1.5 0v5.5a.75.75 0 0 1-1.5 0V5.44L5.889 9.379a.75.75 0 1 1-1.061-1.06l4.75-4.75a.75.75 0 0 1 1.061 0l4.75 4.75a.75.75 0 0 1-1.061 1.061L8.539 5.889H15a.75.75 0 0 1 0 1.5H6.531l3.47 3.47a.75.75 0 1 1-1.061 1.061l-4.75-4.75a.75.75 0 0 1 0-1.061z\"/></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 12px 22px; border-radius: 10px; background: #fca311; color: #0a0a0a; font-weight: 600; font-size: 0.9rem; border: none; cursor: pointer; font-family: Outfit, system-ui, sans-serif; transition: background-color 0.2s ease, transform 0.2s ease; } .ds-btn-primary:hover { background: #ffb43c; } .ds-btn-primary:active { background: #e08f0b; transform: scale(0.99); } .ds-btn-primary:focus-visible { outline: 2px solid #fca311; outline-offset: 3px; border-radius: 4px; }"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "Transparent secondary button with a strong hairline border; used beside the primary when a second path exists.",
+      "html": "<button class=\"ds-btn-quiet\">Ver GitHub</button>",
+      "css": ".ds-btn-quiet { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 12px 22px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14); color: #f0ece8; font-weight: 500; font-size: 0.9rem; background: transparent; cursor: pointer; font-family: Outfit, system-ui, sans-serif; transition: border-color 0.2s ease, background-color 0.2s ease; } .ds-btn-quiet:hover { border-color: #888480; background: rgba(255,255,255,0.04); } .ds-btn-quiet:focus-visible { outline: 2px solid #fca311; outline-offset: 3px; border-radius: 4px; }"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Text input / textarea base style. Panel background, hairline border, 44px minimum height.",
+      "html": "<input class=\"ds-field\" type=\"text\" placeholder=\"Ex: Maria Silva\" />",
+      "css": ".ds-field { width: 100%; min-height: 44px; padding: 11px 16px; border-radius: 10px; background: #121212; border: 1px solid rgba(255,255,255,0.07); color: #f0ece8; font-size: 0.875rem; line-height: 1.5; font-family: Outfit, system-ui, sans-serif; transition: border-color 0.2s ease; } .ds-field::placeholder { color: #888480; } .ds-field:focus-visible { outline: 2px solid #fca311; outline-offset: 2px; border-color: #fca311; }"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Fully rounded metadata pill. DM Mono uppercase, soft-ink text on a 9% amber wash.",
+      "html": "<span class=\"ds-tag\">React</span>",
+      "css": ".ds-tag { font-family: 'DM Mono', ui-monospace, monospace; font-size: 0.625rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.07); color: #bcb8b4; background: rgba(252,163,17,0.09); white-space: nowrap; display: inline-flex; align-items: center; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Surface card with a 1px hairline border and 12px corners. Flat — no shadow.",
+      "html": "<article class=\"ds-card\"><p class=\"ds-card-title\">SamutegDev</p><p>Blog pessoal e portfólio de projetos, com foco em performance, SEO e experiência do usuário.</p></article>",
+      "css": ".ds-card { background: #121212; border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 24px; font-family: Outfit, system-ui, sans-serif; } .ds-card-title { font-weight: 600; font-size: 0.95rem; line-height: 1.35; color: #f0ece8; margin-bottom: 0.5rem; }"
+    },
+    {
+      "name": "Section Header",
+      "kind": "custom",
+      "refersTo": "section-header",
+      "description": "Signature broadsheet component: a two-row band pairing the section title with a right-aligned ~/ eyebrow (or action), closed by a hairline, then a description row closed by a hairline.",
+      "html": "<header class=\"ds-section-header\"><h2 class=\"ds-section-title\">Experiência</h2><p class=\"ds-eyebrow\">~/ minha trajetória</p></header><div class=\"ds-description-row\"><p class=\"ds-page-subtitle\">Minha jornada profissional e acadêmica no desenvolvimento de software.</p></div>",
+      "css": ".ds-section-header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px 8px; border-bottom: 1px solid rgba(255,255,255,0.07); padding: 14px 16px; } .ds-section-title { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.25rem, 2vw, 1.625rem); font-weight: 500; line-height: 1.2; letter-spacing: -0.01em; color: #f0ece8; margin: 0; } .ds-eyebrow { font-family: 'DM Mono', ui-monospace, monospace; font-size: 0.625rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #888480; margin: 0; } .ds-description-row { border-bottom: 1px solid rgba(255,255,255,0.07); padding: 14px 16px; } .ds-page-subtitle { color: #bcb8b4; font-size: 0.95rem; line-height: 1.7; max-width: 42rem; margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Terminal Broadsheet",
+    "overview": "Two registers held in one surface: the ruled, columned composure of a printed broadsheet, and the clipped monospaced shorthand of a shell session. Every section is a band inside a bordered frame, separated by a hairline instead of a gap, so the page reads as one continuous printed sheet. Against that structure the microcopy speaks in ~/home, $ exp, and # — the site's only technical flourish, and a deliberately small one. The personality is quiet, warm, and confident. Warmth comes from the near-black canvas and the cream-leaning ink, not from hue; the single amber accent behaves like an instrument light on a dark panel. There are no gradients, no decorative glows, and no box-shadows anywhere in the system. Density is editorial. Header rows are 14px tall, card blocks 28px, and the generous space lives between bands rather than inside them. Type carries the hierarchy: a serif display voice for the claim, a geometric sans for the argument, and monospace for the metadata.",
+    "keyCharacteristics": ["Hairline-ruled frame; grids are divided by 1px lines, never by gaps.", "Warm near-black canvas, cream text, one amber signal.", "Playfair Display for claims, Outfit for prose, DM Mono for metadata.", "Flat by default — zero box-shadows in the entire system.", "Shell framing (~/, $, #) as the only technical ornament."],
+    "rules": [
+      { "name": "The One Lamp Rule", "body": "Amber is a signal, not a surface. It fills the primary CTA, the timeline marker, and hover/active states; it never becomes a background band, a gradient, or a section tint. The only permitted wash is the 9% --accent-wash behind small pills.", "section": "colors" },
+      { "name": "The Warm Neutral Rule", "body": "No pure black and no pure white. Every neutral carries a trace of warmth; #000 and #fff do not appear in the system.", "section": "colors" },
+      { "name": "The Serif-Is-Structure Rule", "body": "Playfair appears only on display, page, and section headings. Card titles, body copy, buttons, tags, and labels are Outfit or DM Mono. Never set a paragraph or a control in the serif.", "section": "typography" },
+      { "name": "The Mono-Is-Metadata Rule", "body": "DM Mono is reserved for measurement and system voice: routes, dates, tags, counts, nav labels. It is never used for body copy.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "No box-shadow, ever. If something must separate from its neighbour, add a hairline or step the surface tone — never a shadow, never a glow. A ring-4 in the canvas color is allowed only to punch a timeline dot out of a dashed line.", "section": "elevation" }
+    ],
+    "dos": ["Do separate regions with a 1px hairline in rgba(255,255,255,0.07) instead of with spacing alone.", "Do keep grids gapless and draw the dividers per cell (md:border-r, md:border-t).", "Do reserve amber for state and the single primary CTA; keep it under roughly 10% of any screen.", "Do use clamp() for every heading so the broadsheet holds from 360px to 1440px.", "Do give every interactive element a 44px minimum touch target, even when the visual is smaller.", "Do keep the mono label uppercase and tracked; it is the system's voice, not decoration."],
+    "donts": ["Don't add a box-shadow, glow, or gradient to create depth — step the surface tone or add a hairline.", "Don't introduce a second accent hue; success green is a status dot, not a palette.", "Don't set body copy, buttons, or tags in Playfair Display.", "Don't use pure black or pure white; the warm neutrals are load-bearing.", "Don't put rounded corners on structural bands or dividers, and don't square off the interactive objects.", "Don't animate anything beyond opacity and small transforms; motion is a reveal, not a performance."]
+  }
+}

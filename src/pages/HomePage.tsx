@@ -150,7 +150,7 @@ const HomePage = () => {
                   />
                 </div>
                 <figcaption className="flex items-center justify-between border-t border-line px-4 py-2.5">
-                  <span className="meta">$ exp — 2+ anos</span>
+                  <span className="meta">$ exp — Desde 2023</span>
                   <span className="meta text-accent-text">@samuteg10</span>
                 </figcaption>
               </figure>
@@ -160,7 +160,7 @@ const HomePage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-3 border-t border-line">
             {[
               { label: "Base", value: "Brasil" },
-              { label: "Experiência", value: "2+ anos" },
+              { label: "Experiência", value: "Desde 2023" },
               { label: "Foco", value: "Full-stack" },
             ].map(({ label, value }, i) => (
               <div

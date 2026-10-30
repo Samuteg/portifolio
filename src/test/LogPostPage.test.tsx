@@ -1,5 +1,5 @@
 import { describe, it, expect, afterEach } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, screen, cleanup, within } from "@testing-library/react";
 import LogPostPage from "../pages/LogPostPage";
 
 const GO_POST_SLUG = "exercicio-em-go-calculando-medias-de-uma-turma";
@@ -17,7 +17,7 @@ describe("LogPostPage — página completa do post", () => {
     expect(
       screen.getByRole("heading", { level: 1, name: GO_POST_TITLE })
     ).toBeInTheDocument();
-    expect(screen.getByText("Modelando os dados")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2, name: "Modelando os dados" })).toBeInTheDocument();
   });
 
   it("aplica syntax highlight nos code blocks", () => {
@@ -50,10 +50,26 @@ describe("LogPostPage — página completa do post", () => {
     );
   });
 
-  it("volta para a seção de logs pelo link do header", () => {
+  it("volta para a seção de logs pelo botão de voltar", () => {
     render(<LogPostPage slug={GO_POST_SLUG} />);
-    const back = screen.getByRole("link", { name: /todos os logs/i });
+    const back = screen.getByRole("link", { name: /^voltar$/i });
     expect(back).toHaveAttribute("href", "/#devlogs");
+  });
+
+  it("mostra data e tempo de leitura no topo do artigo", () => {
+    render(<LogPostPage slug={GO_POST_SLUG} />);
+    expect(screen.getByText(/28 de setembro de 2026/i)).toBeInTheDocument();
+    expect(screen.getByText(/\d+ min de leitura/i)).toBeInTheDocument();
+  });
+
+  it("gera o sumário com links para as seções do artigo", () => {
+    render(<LogPostPage slug={GO_POST_SLUG} />);
+    const toc = screen.getByRole("navigation", { name: /neste artigo/i });
+    const link = within(toc).getByRole("link", { name: "Modelando os dados" });
+    const heading = screen.getByRole("heading", { level: 2, name: "Modelando os dados" });
+
+    expect(heading).toHaveAttribute("id", "modelando-os-dados");
+    expect(link).toHaveAttribute("href", "#modelando-os-dados");
   });
 
   it("mostra estado 404 para slug inexistente", () => {

@@ -59,3 +59,85 @@ export const formatLogDate = (date: Date) =>
     .toLocaleDateString("pt-BR", { day: "2-digit", month: "short", year: "numeric" })
     .replace(/de\s/g, "")
     .replace(/\./g, "");
+
+const MONTHS = [
+  "janeiro",
+  "fevereiro",
+  "março",
+  "abril",
+  "maio",
+  "junho",
+  "julho",
+  "agosto",
+  "setembro",
+  "outubro",
+  "novembro",
+  "dezembro",
+];
+
+export const formatLogDateLong = (date: Date) =>
+  `${date.getUTCDate()} de ${MONTHS[date.getUTCMonth()]} de ${date.getUTCFullYear()}`;
+
+export const logReadingTime = (body: string) => {
+  const words = body.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+};
+
+export type LogHeading = {
+  id: string;
+  text: string;
+  level: 2 | 3;
+  line: number;
+};
+
+export const slugifyHeading = (text: string) =>
+  text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/<[^>]+>/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+
+const headingText = (raw: string) =>
+  raw
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+    .replace(/[`*_~]/g, "")
+    .replace(/<[^>]+>/g, "")
+    .trim();
+
+export const extractLogHeadings = (body: string): LogHeading[] => {
+  const headings: LogHeading[] = [];
+  const seen = new Map<string, number>();
+  let inFence = false;
+
+  body.split(/\r?\n/).forEach((line, index) => {
+    if (/^\s*(```|~~~)/.test(line)) {
+      inFence = !inFence;
+      return;
+    }
+    if (inFence) return;
+
+    const match = line.match(/^(#{2,3})\s+(.+?)\s*#*\s*$/);
+    if (!match) return;
+
+    const text = headingText(match[2]);
+    if (!text) return;
+
+    const base = slugifyHeading(text) || `secao-${index + 1}`;
+    const count = seen.get(base) ?? 0;
+    seen.set(base, count + 1);
+
+    headings.push({
+      id: count === 0 ? base : `${base}-${count + 1}`,
+      text,
+      level: match[1].length as 2 | 3,
+      line: index + 1,
+    });
+  });
+
+  return headings;
+};
